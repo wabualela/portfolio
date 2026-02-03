@@ -1,6 +1,45 @@
 
 export type Language = 'en' | 'ar';
 
+export const INITIAL_EXPERIENCE_DATA = [
+  {
+    period: "2024 Dec – Present",
+    company: "Crystal International Technology",
+    role: "Senior PHP & Moodle Developer",
+    descEn: "Currently assigned to the Princess Nourah University (PNU) e-learning platform. Collaborating directly with university staff to manage, administer, and develop the platform. Key responsibilities include implementing custom Moodle features, optimizing core system performance, and managing large-scale data migrations.",
+    descAr: "مكلف حالياً بالعمل على منصة التعليم الإلكتروني لجامعة الأميرة نورة (PNU). التعاون مباشرة مع موظفي الجامعة لإدارة والإشراف وتطوير المنصة. تشمل المسؤوليات الرئيسية تنفيذ ميزات Moodle المخصصة، وتحسين أداء النظام الأساسي."
+  },
+  {
+    period: "2024 Oct – Present",
+    company: "Alborhan Organization",
+    role: "PHP & Moodle Developer (Part-time)",
+    descEn: "Responsible for upgrading, customizing, and administering major e-learning platforms: Alborhan Academy and Moddaker. Managing infrastructure and scalability using Docker containers and Nginx optimization.",
+    descAr: "مسؤول عن ترقية وتخصيص وإدارة منصات التعليم الإلكتروني الكبرى: أكاديمية البرهان ومدكر. إدارة البنية التحتية وقابلية التطوير باستخدام حاويات Docker وتحسينات Nginx."
+  }
+];
+
+export const INITIAL_EDUCATION_DATA = [
+  {
+    institution: "National Ribat University",
+    degreeEn: "Bachelor's Degree in Computer Science (Honours)",
+    degreeAr: "بكالوريوس علوم الحاسوب (مرتبة الشرف)",
+    period: "2010 – 2014"
+  },
+  {
+    institution: "University of Khartoum",
+    degreeEn: "Master of Computer Science (Incomplete)",
+    degreeAr: "ماجستير علوم الحاسب (غير مكتمل)",
+    period: "2017"
+  }
+];
+
+export const skillsData = {
+  backend: ["PHP", "Laravel", "MySQL", "LEMP Stack"],
+  frontend: ["HTML5", "CSS3", "JavaScript", "ReactJS", "Vue.js"],
+  cms: ["Moodle Development", "Custom Plugins", "WordPress"],
+  tools: ["Git", "Docker", "Nginx", "Laravel Forge"]
+};
+
 export const translations = {
   en: {
     name: "Wail Abualela Osman",
@@ -18,11 +57,13 @@ export const translations = {
     email: "wailabualela@gmail.com",
     phone: "+966 50 259 2707",
     website: "wailbox.com",
-    ramadanGreeting: "Ramadan Kareem",
-    about: "Experienced PHP Developer skilled in designing and deploying scalable web applications with a focus on e-learning solutions and client-based projects. Expert in the LEMP stack, using Nginx to deliver optimized, secure, and high-performance applications. Proficient in both front-end (HTML, CSS, JavaScript, Bootstrap, jQuery) and back-end development, with advanced skills in Laravel for building complex systems.",
-    aboutExtended: "Known for customizing Moodle platforms to meet diverse client needs and deploying seamless, user-friendly e-learning environments. Collaborative and adaptable, I work effectively with cross-functional teams to manage hosting solutions, implement custom plugins, and create responsive applications that meet client objectives.",
-    viewGitHub: "View GitHub",
-    viewLinkedIn: "View LinkedIn"
+    navHero: "Home",
+    navProfile: "Profile",
+    navExperience: "History",
+    navProjects: "Work",
+    navEducation: "Education",
+    about: "Experienced PHP Developer skilled in designing and deploying scalable web applications with a focus on e-learning solutions and client-based projects. Expert in the LEMP stack, using Nginx to deliver optimized, secure, and high-performance applications.",
+    aboutExtended: "Known for customizing Moodle platforms to meet diverse client needs and deploying seamless, user-friendly e-learning environments. Collaborative and adaptable, I work effectively with cross-functional teams to manage hosting solutions.",
   },
   ar: {
     name: "وائل أبوالعلا عثمان",
@@ -40,55 +81,12 @@ export const translations = {
     email: "wailabualela@gmail.com",
     phone: "+966 50 259 2707",
     website: "wailbox.com",
-    ramadanGreeting: "رمضان كريم",
-    about: "مطور PHP متمرس ماهر في تصميم ونشر تطبيقات الويب القابلة للتطوير مع التركيز على حلول التعليم الإلكتروني والمشاريع القائمة على العملاء. خبير في حزمة LEMP، باستخدام Nginx لتقديم تطبيقات محسنة وآمنة وعالية الأداء. محترف في كل من التطوير الأمامي (HTML، CSS، JavaScript، Bootstrap، jQuery) والتطوير الخلفي، مع مهارات متقدمة في Laravel لبناء أنظمة معقدة.",
-    aboutExtended: "معروف بتخصيص منصات Moodle لتلبية احتياجات العملاء المتنوعة ونشر بيئات تعليم إلكتروني سلسة وسهلة الاستخدام. متعاون وقابل للتكيف، أعمل بفعالية مع فرق العمل المشتركة لإدارة حلول الاستضافة، وتنفيذ الإضافات المخصصة، وإنشاء تطبيقات متجاوبة تلبي أهداف العملاء.",
-    viewGitHub: "مشاهدة GitHub",
-    viewLinkedIn: "مشاهدة LinkedIn"
+    navHero: "البداية",
+    navProfile: "الملف",
+    navExperience: "الخبرة",
+    navProjects: "الأعمال",
+    navEducation: "التعليم",
+    about: "مطور PHP متمرس ماهر في تصميم ونشر تطبيقات الويب القابلة للتطوير مع التركيز على حلول التعليم الإلكتروني والمشاريع القائمة على العملاء. خبير في حزمة LEMP.",
+    aboutExtended: "معروف بتخصيص منصات Moodle لتلبية احتياجات العملاء المتنوعة ونشر بيئات تعليم إلكتروني سلسة وسهلة الاستخدام. متعاون وقابل للتكيف.",
   }
-};
-
-export const experienceData = [
-  {
-    period: "2024 Dec – Present",
-    company: "Crystal International Technology",
-    role: "Senior PHP & Moodle Developer",
-    descEn: "Assigned to work on Princess Nourah University (PNU) e-learning platform. Collaborating directly with university staff to manage, administer, and develop the platform.",
-    descAr: "مكلف بالعمل على منصة التعليم الإلكتروني لجامعة الأميرة نورة (PNU). التعاون مباشرة مع موظفي الجامعة لإدارة والإشراف وتطوير المنصة."
-  },
-  {
-    period: "2024 Oct – Present",
-    company: "Alborhan Organization",
-    role: "PHP & Moodle Developer (Part-time)",
-    descEn: "Responsible for upgrading, customizing, and administering e-learning platforms: Alborhan Academy and Moddaker. Handling infrastructure and scalability.",
-    descAr: "مسؤول عن ترقية وتخصيص وإدارة منصات التعليم الإلكتروني: أكاديمية البرهان ومدكر. التعامل مع البنية التحتية وقابلية التطوير."
-  },
-  {
-    period: "2023 Jan – 2024 Oct",
-    company: "Izdiad for Integrated Services",
-    role: "Full-Stack Developer",
-    descEn: "Contributed to maintenance and development of Moodle-based platforms. Managed hosting on DigitalOcean and developed WordPress front-ends.",
-    descAr: "ساهمت في صيانة وتطوير المنصات القائمة على Moodle. إدارة الاستضافة على DigitalOcean وتطوير واجهات WordPress الأمامية."
-  },
-  {
-    period: "2022 Nov – 2023 Jan",
-    company: "Khlel Platform",
-    role: "Web Developer",
-    descEn: "Enhanced platform functionality using Laravel and InertiaJS for backend. Developed UI components with ReactJS and managed Laravel Forge deployments.",
-    descAr: "تحسين وظائف المنصة باستخدام Laravel و InertiaJS للخلفية. تطوير مكونات واجهة المستخدم باستخدام ReactJS وإدارة عمليات النشر عبر Laravel Forge."
-  },
-  {
-    period: "2021 Oct – 2022 Nov",
-    company: "Freelance",
-    role: "Web Developer",
-    descEn: "Specialized in building robust online platforms and mobile apps using Moodle, Laravel, and Moodle App technologies for diverse clients.",
-    descAr: "متخصص في بناء منصات إلكترونية قوية وتطبيقات جوال باستخدام تقنيات Moodle و Laravel و Moodle App لعملاء متنوعين."
-  }
-];
-
-export const skillsData = {
-  backend: ["PHP", "Laravel", "Laravel Livewire", "MySQL", "LEMP Stack"],
-  frontend: ["HTML5", "CSS3", "JavaScript", "TailwindCSS", "ReactJS", "Vue.js", "InertiaJS"],
-  cms: ["Moodle Development", "Custom Plugins", "WordPress"],
-  tools: ["Git & GitHub", "Docker", "Nginx", "Laravel Forge", "DigitalOcean"]
 };
