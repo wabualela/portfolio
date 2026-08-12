@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { LangProvider } from '@/lib/useLang';
+import { ThemeProvider } from '@/lib/useTheme';
 import { NavBar } from '@/components/NavBar';
-import { Hero } from '@/components/Hero';
-import { Work } from '@/components/Work';
-import { Experience } from '@/components/Experience';
-import { Skills } from '@/components/Skills';
-import { Education } from '@/components/Education';
 import { Footer } from '@/components/Footer';
 import { LangOverlay } from '@/components/LangOverlay';
+import { Home } from '@/pages/Home';
+import { WritingPage } from '@/pages/WritingPage';
+import { ArticlePage } from '@/pages/ArticlePage';
+
+const ScrollToTop: React.FC = () => {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      document.getElementById(hash.slice(1))?.scrollIntoView();
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+  return null;
+};
 
 const App: React.FC = () => (
   <LangProvider>
-    <LangOverlay />
-    <NavBar />
-    <main>
-      <Hero />
-      <Work />
-      <Experience />
-      <Skills />
-      <Education />
-    </main>
-    <Footer />
+    <ThemeProvider>
+      <ScrollToTop />
+      <LangOverlay />
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/writing" element={<WritingPage />} />
+        <Route path="/writing/:slug" element={<ArticlePage />} />
+      </Routes>
+      <Footer />
+    </ThemeProvider>
   </LangProvider>
 );
 

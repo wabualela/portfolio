@@ -34,7 +34,7 @@ const ICONS = [
 export const StackMarquee: React.FC = () => (
   <div
     dir="ltr"
-    className="relative mt-20 overflow-hidden border-y border-line py-8"
+    className="relative overflow-hidden border-y border-line py-8"
     aria-hidden="true"
   >
     <div className="marquee-track flex w-max items-center gap-20 pe-20 text-ink/35">

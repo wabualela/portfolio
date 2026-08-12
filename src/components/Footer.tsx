@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
           <a
             dir="ltr"
             href={`mailto:${identity.email}`}
-            className="group relative mt-6 inline-block break-all font-bold text-ink transition-colors duration-300 hover:text-accent"
+            className="group relative mt-6 inline-block break-all font-bold text-ink transition-colors duration-300 hover:text-accent-ink"
             style={{ fontSize: 'clamp(1.75rem, 5.5vw, 5rem)' }}
           >
             {identity.email}
@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-mono text-xs uppercase text-dim transition-colors hover:text-accent"
+                className="flex items-center gap-1.5 font-mono text-xs uppercase text-dim transition-colors hover:text-accent-ink"
               >
                 {link.label}
                 <ArrowUpRight size={13} className="rtl:-scale-x-100" />

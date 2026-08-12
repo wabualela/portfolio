@@ -10,9 +10,11 @@ export interface Project {
   title: string;
   desc: Localized;
   tags: string[];
-  url: string;
-  /* TODO: replace picsum placeholders with real project screenshots from the user */
-  image: string;
+  url?: string;
+  /* label shown inside the gradient placeholder until real screenshots arrive */
+  phLabel: string;
+  /* TODO: real screenshot path once the user provides one; replaces the placeholder */
+  image?: string;
 }
 
 export interface ExperienceEntry {
@@ -20,12 +22,13 @@ export interface ExperienceEntry {
   company: Localized;
   role: Localized;
   desc: Localized;
+  /* placeholder rows render dimmed until real data lands */
+  placeholder?: boolean;
 }
 
-export interface EducationEntry {
-  institution: Localized;
-  degree: Localized;
-  period: string;
+export interface SkillGroup {
+  label: Localized;
+  items: string[];
 }
 
 export const identity = {
@@ -43,10 +46,14 @@ export const ui = {
   nav: {
     work: { en: 'Work', ar: 'الأعمال' },
     experience: { en: 'Experience', ar: 'الخبرة' },
-    skills: { en: 'Skills', ar: 'المهارات' },
+    writing: { en: 'Writing', ar: 'المقالات' },
     contact: { en: 'Contact', ar: 'تواصل' },
   },
   switchLang: { en: 'عربي', ar: 'English' },
+  themeToggle: {
+    toDark: { en: 'Dark', ar: 'داكن' },
+    toLight: { en: 'Light', ar: 'فاتح' },
+  },
   hero: {
     rolePre: {
       en: 'Full stack PHP engineer building ',
@@ -64,13 +71,22 @@ export const ui = {
     work: { en: 'Selected Work', ar: 'أعمال مختارة' },
     experience: { en: 'Experience', ar: 'الخبرة المهنية' },
     skills: { en: 'Skills', ar: 'المهارات التقنية' },
-    education: { en: 'Education', ar: 'التعليم' },
+    writing: { en: 'Writing', ar: 'المقالات' },
   },
-  skillGroups: {
-    backend: { en: 'Backend', ar: 'الواجهة الخلفية' },
-    frontend: { en: 'Frontend', ar: 'الواجهة الأمامية' },
-    cms: { en: 'E-learning & CMS', ar: 'التعليم الإلكتروني وإدارة المحتوى' },
-    tools: { en: 'Infrastructure & Tools', ar: 'البنية التحتية والأدوات' },
+  writing: {
+    allPosts: { en: 'All posts', ar: 'كل المقالات' },
+    pageIntro: {
+      en: 'Tutorials and notes on Moodle, Laravel, and building e-learning platforms at scale.',
+      ar: 'شروح وملاحظات في Moodle و Laravel وبناء منصات التعليم الإلكتروني على نطاق واسع.',
+    },
+    filterAll: { en: 'All', ar: 'الكل' },
+    filterTutorials: { en: 'Tutorials', ar: 'الشروح' },
+    filterNotes: { en: 'Notes', ar: 'الملاحظات' },
+    minRead: { en: 'MIN', ar: 'دقائق' },
+    back: { en: 'Writing', ar: 'المقالات' },
+    prev: { en: 'Previous', ar: 'السابق' },
+    next: { en: 'Next', ar: 'التالي' },
+    minReadLong: { en: 'MIN READ', ar: 'دقائق قراءة' },
   },
   footer: {
     heading: { en: "Let's work together", ar: 'لنعملْ معًا' },
@@ -81,7 +97,7 @@ export const ui = {
   },
 } as const;
 
-/* TODO: real project data arrives from the user; structure stays identical */
+/* TODO: real project data and screenshots arrive from the user */
 export const projects: Project[] = [
   {
     slug: 'pnu-elearning',
@@ -92,7 +108,7 @@ export const projects: Project[] = [
     },
     tags: ['Moodle', 'PHP', 'MySQL'],
     url: 'https://elearning.pnu.edu.sa',
-    image: 'https://picsum.photos/seed/pnu-elearning-platform/1400/900',
+    phLabel: 'Project screenshot 1400 × 900',
   },
   {
     slug: 'alborhan-academy',
@@ -101,9 +117,9 @@ export const projects: Project[] = [
       en: 'Religious education portal: platform upgrades, Docker infrastructure, and Nginx optimization.',
       ar: 'بوابة تعليم شرعي: ترقيات للمنصة، وبنية تحتية بـ Docker، وتحسينات Nginx.',
     },
-    tags: ['Laravel', 'Moodle', 'Docker'],
+    tags: ['Moodle', 'Mustache', 'JS'],
     url: 'https://academy.alborhan.com',
-    image: 'https://picsum.photos/seed/alborhan-academy-portal/1000/900',
+    phLabel: 'Project screenshot 1400 × 900',
   },
   {
     slug: 'moddaker',
@@ -112,9 +128,29 @@ export const projects: Project[] = [
       en: 'Quran memorization platform: customization, administration, and scaling for a growing student base.',
       ar: 'منصة لحفظ القرآن: تخصيص وإدارة وتوسيع لقاعدة طلاب متنامية.',
     },
-    tags: ['Moodle', 'PHP', 'Nginx'],
+    tags: ['Laravel', 'MySQL'],
     url: 'https://moddaker.com',
-    image: 'https://picsum.photos/seed/moddaker-quran-platform/2000/900',
+    phLabel: 'Project screenshot 2100 × 900',
+  },
+  {
+    slug: 'wailbox-blog-engine',
+    title: 'wailbox Blog Engine',
+    desc: {
+      en: "Placeholder: the Laravel + Markdown engine behind this site's Writing section: bilingual posts, RTL-aware typography, zero-JS pages.",
+      ar: 'مؤقت: محرك Laravel + Markdown خلف قسم المقالات في هذا الموقع: تدوينات ثنائية اللغة وصفحات بلا JavaScript.',
+    },
+    tags: ['Laravel', 'Markdown', 'Open source'],
+    phLabel: 'Blog screenshot 1400 × 900',
+  },
+  {
+    slug: 'moodle-dev-series',
+    title: 'Moodle Dev Tutorial Series',
+    desc: {
+      en: 'Placeholder: a written series taking developers from first plugin to production: scaffolding, upgrades, and Arabic-first theming.',
+      ar: 'مؤقت: سلسلة مكتوبة تأخذ المطورين من أول إضافة حتى الإنتاج: التهيئة والترقيات والقوالب العربية.',
+    },
+    tags: ['Moodle', 'Tutorials', 'PHP'],
+    phLabel: 'Series cover 1400 × 900',
   },
 ];
 
@@ -127,8 +163,8 @@ export const experience: ExperienceEntry[] = [
     },
     role: { en: 'Senior PHP & Moodle Developer', ar: 'مطوّر PHP و Moodle أوّل' },
     desc: {
-      en: 'Assigned to the Princess Nourah University e-learning platform. Working directly with university staff to manage, administer, and develop the platform: custom Moodle features, core performance optimization, and large-scale data migrations.',
-      ar: 'مكلَّف بمنصة التعليم الإلكتروني لجامعة الأميرة نورة. أعمل مباشرة مع فريق الجامعة على إدارة المنصة وتطويرها: ميزات Moodle مخصّصة، وتحسين أداء النظام، وترحيل بيانات واسع النطاق.',
+      en: 'Assigned to the Princess Nourah University e-learning platform. Custom Moodle features, core performance optimization, and large-scale data migrations.',
+      ar: 'مكلَّف بمنصة التعليم الإلكتروني لجامعة الأميرة نورة: ميزات Moodle مخصّصة، وتحسين أداء النظام، وترحيل بيانات واسع النطاق.',
     },
   },
   {
@@ -143,30 +179,33 @@ export const experience: ExperienceEntry[] = [
       ar: 'ترقية وتخصيص وإدارة أكاديمية البرهان ومنصة مدّكر. إدارة البنية التحتية وقابلية التوسّع بحاويات Docker وتحسينات Nginx.',
     },
   },
-];
-
-export const education: EducationEntry[] = [
   {
-    institution: { en: 'National Ribat University', ar: 'جامعة الرباط الوطني' },
-    degree: {
-      en: "Bachelor's in Computer Science (Honours)",
-      ar: 'بكالوريوس علوم الحاسوب (مرتبة الشرف)',
+    period: '2021 - 2024',
+    company: { en: 'Company name', ar: 'اسم الشركة' },
+    role: { en: 'Earlier role (placeholder)', ar: 'دور سابق (مؤقت)' },
+    desc: {
+      en: 'Swap in previous roles, scope, and outcomes.',
+      ar: 'تُستبدل بالأدوار السابقة ونطاقها ونتائجها.',
     },
-    period: '2010 - 2014',
-  },
-  {
-    institution: { en: 'University of Khartoum', ar: 'جامعة الخرطوم' },
-    degree: {
-      en: 'Master of Computer Science (Incomplete)',
-      ar: 'ماجستير علوم الحاسوب (غير مكتمل)',
-    },
-    period: '2017',
+    placeholder: true,
   },
 ];
 
-export const skills = {
-  backend: ['PHP', 'Laravel', 'MySQL', 'REST APIs', 'LEMP Stack'],
-  frontend: ['JavaScript', 'React', 'Vue.js', 'HTML5', 'CSS3'],
-  cms: ['Moodle Development', 'Custom Plugins', 'WordPress'],
-  tools: ['Docker', 'Nginx', 'Git', 'Laravel Forge'],
-} as const;
+export const skillGroups: SkillGroup[] = [
+  {
+    label: { en: 'Backend', ar: 'الواجهة الخلفية' },
+    items: ['PHP', 'Laravel', 'MySQL', 'Redis', 'REST APIs'],
+  },
+  {
+    label: { en: 'E-Learning', ar: 'التعليم الإلكتروني' },
+    items: ['Moodle', 'SCORM', 'LTI'],
+  },
+  {
+    label: { en: 'Frontend', ar: 'الواجهة الأمامية' },
+    items: ['JavaScript', 'Vue', 'Mustache'],
+  },
+  {
+    label: { en: 'DevOps', ar: 'التشغيل' },
+    items: ['Docker', 'Linux', 'Nginx', 'CI/CD'],
+  },
+];

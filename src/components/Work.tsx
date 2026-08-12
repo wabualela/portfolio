@@ -4,6 +4,15 @@ import { projects, ui } from '@/content/site';
 import { Reveal } from './Reveal';
 import { ProjectCard } from './ProjectCard';
 
+/* grid recipe per mockup: 7/5 offset pair, full-width wide, then a 6/6 pair */
+const SLOTS = [
+  { className: 'md:col-span-7', aspect: 'aspect-[14/9]', delay: 0 },
+  { className: 'md:col-span-5 md:mt-[120px]', aspect: 'aspect-[14/9]', delay: 0.1 },
+  { className: 'md:col-span-12', aspect: 'aspect-[16/9] md:aspect-[21/9]', delay: 0 },
+  { className: 'md:col-span-6', aspect: 'aspect-[14/9]', delay: 0 },
+  { className: 'md:col-span-6', aspect: 'aspect-[14/9]', delay: 0.1 },
+];
+
 export const Work: React.FC = () => {
   const { t, isRtl } = useLang();
 
@@ -12,7 +21,7 @@ export const Work: React.FC = () => {
       <div className="mx-auto max-w-[1400px]">
         <Reveal>
           <h2
-            className={`mb-16 text-4xl font-bold text-ink md:mb-24 md:text-6xl ${
+            className={`mb-14 text-4xl font-bold text-ink md:mb-16 md:text-6xl ${
               isRtl ? '' : 'tracking-tight'
             }`}
           >
@@ -20,23 +29,19 @@ export const Work: React.FC = () => {
           </h2>
         </Reveal>
 
-        <div className="grid gap-x-8 gap-y-20 md:grid-cols-12">
-          <ProjectCard
-            project={projects[0]}
-            className="md:col-span-7"
-            aspect="aspect-[14/9]"
-          />
-          <ProjectCard
-            project={projects[1]}
-            className="md:col-span-5 md:mt-24"
-            aspect="aspect-[10/9]"
-            delay={0.1}
-          />
-          <ProjectCard
-            project={projects[2]}
-            className="md:col-span-12"
-            aspect="aspect-[16/9] md:aspect-[21/8]"
-          />
+        <div className="grid gap-x-6 gap-y-20 md:grid-cols-12 md:gap-y-24">
+          {projects.map((project, i) => {
+            const slot = SLOTS[i % SLOTS.length];
+            return (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                className={slot.className}
+                aspect={slot.aspect}
+                delay={slot.delay}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

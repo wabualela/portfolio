@@ -17,13 +17,14 @@ No test runner or linter is configured. npm is the package manager (single `pack
 
 ## Architecture
 
-Source lives in `src/` (path alias `@/` → `src/`):
+Source lives in `src/` (path alias `@/` → `src/`). Multi-page SPA via `react-router-dom` (BrowserRouter): `/` (Home), `/writing`, `/writing/:slug`. Deployment needs an SPA fallback rewrite to `index.html`.
 
-- `src/content/site.ts` — ALL user-facing text as `{ en, ar }` `Localized` pairs, plus data (projects, experience, education, skills). New UI text goes here in both languages, never hard-coded in components. Project data is placeholder until real data/images arrive (see TODO comments; images are picsum seeds).
+- `src/content/site.ts` — ALL user-facing text as `{ en, ar }` `Localized` pairs, plus data (projects, experience, skill groups). `src/content/posts.ts` — writing posts (type `tutorial|note`, body as `p/h2/code/quote` blocks). New UI text goes in these files in both languages, never hard-coded in components. Project/post data is placeholder until real content arrives (TODO comments; media are `.ph-media` gradient placeholders, no external images).
 - `src/lib/useLang.tsx` — language context: `t()` resolver, `toggle()` with timed overlay swap, flips `document.documentElement.lang/dir`, persists to localStorage. Reduced-motion users get an instant swap.
-- `src/index.css` — Tailwind v4 entry: font imports (@fontsource, self-hosted), `@theme` design tokens (colors `bg/surface/line/ink/dim/accent`, fonts `display/arabic/mono`), Arabic letter-spacing guard, the single marquee keyframes.
-- `src/components/` — one file per section (`Hero`, `Work`, `Experience`, `Skills`, `Education`, `Footer`) plus primitives (`Reveal` — the only scroll-reveal wrapper), chrome (`NavBar`, `MobileMenu`) and the `LangOverlay` signature interaction.
-- `src/App.tsx` only assembles sections inside `LangProvider`.
+- `src/lib/useTheme.tsx` — dark/light theme context; sets `data-theme` on `<html>`, persists to localStorage. Dark is default.
+- `src/index.css` — Tailwind v4 entry: font imports (@fontsource, self-hosted), `@theme` design tokens, the `html[data-theme='light']` token override block, Arabic letter-spacing guard, `.ph-media` gradient, the single marquee keyframes. **Accent rule:** `--color-accent` (volt) is for FILLS only; accent-colored TEXT must use `--color-accent-ink` (volt on dark, olive on light).
+- `src/components/` — sections (`Hero`, `StackMarquee`, `Work`, `Experience`, `Skills`, `WritingSection`, `Footer`), primitives (`Reveal` — the only scroll-reveal wrapper), chrome (`NavBar`, `MobileMenu`), `LangOverlay`. `src/pages/` — `Home`, `WritingPage`, `ArticlePage`.
+- `src/App.tsx` assembles providers, routes, and the shared chrome.
 
 ## Constraints that bite
 

@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
           <MaskLine delay={0.38} className="md:col-span-7">
             <p className="max-w-[38ch] text-xl leading-relaxed text-dim md:text-2xl">
               {t(ui.hero.rolePre)}
-              <span className="text-accent">{t(ui.hero.roleAccent)}</span>
+              <span className="text-accent-ink">{t(ui.hero.roleAccent)}</span>
               {t(ui.hero.rolePost)}
             </p>
           </MaskLine>
@@ -70,7 +70,7 @@ export const Hero: React.FC = () => {
             </a>
             <a
               href={`mailto:${identity.email}`}
-              className="border border-line px-7 py-4 font-mono text-xs uppercase text-ink transition-colors duration-200 hover:border-accent hover:text-accent active:scale-[0.98]"
+              className="border border-line px-7 py-4 font-mono text-xs uppercase text-ink transition-colors duration-200 hover:border-accent-ink hover:text-accent-ink active:scale-[0.98]"
             >
               {t(ui.hero.ctaEmail)}
             </a>
@@ -87,7 +87,7 @@ export const Hero: React.FC = () => {
           <a
             dir="ltr"
             href={`mailto:${identity.email}`}
-            className="transition-colors hover:text-accent"
+            className="transition-colors hover:text-accent-ink"
           >
             {identity.email}
           </a>
@@ -96,7 +96,7 @@ export const Hero: React.FC = () => {
             href={`https://${identity.website}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-accent"
+            className="transition-colors hover:text-accent-ink"
           >
             {identity.website}
           </a>

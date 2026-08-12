@@ -1,20 +1,17 @@
 import React from 'react';
 import { useLang } from '@/lib/useLang';
-import { skills, ui } from '@/content/site';
+import { skillGroups, ui } from '@/content/site';
 import { Reveal } from './Reveal';
-import { StackMarquee } from './StackMarquee';
-
-const GROUP_KEYS = ['backend', 'frontend', 'cms', 'tools'] as const;
 
 export const Skills: React.FC = () => {
   const { t, isRtl } = useLang();
 
   return (
-    <section id="skills" className="px-6 py-28 md:px-10 md:py-40">
+    <section id="skills" className="border-t border-line px-6 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[1400px]">
         <Reveal>
           <h2
-            className={`mb-16 text-4xl font-bold text-ink md:mb-24 md:text-6xl ${
+            className={`mb-12 text-4xl font-bold text-ink md:text-6xl ${
               isRtl ? '' : 'tracking-tight'
             }`}
           >
@@ -22,25 +19,33 @@ export const Skills: React.FC = () => {
           </h2>
         </Reveal>
 
-        <div className="grid gap-x-16 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-          {GROUP_KEYS.map((key, i) => (
-            <Reveal key={key} delay={i * 0.06}>
-              <h3 className="font-mono text-xs uppercase text-dim">
-                {t(ui.skillGroups[key])}
-              </h3>
-              <ul className="mt-5 space-y-2">
-                {skills[key].map((skill) => (
-                  <li key={skill} dir="ltr" className="text-lg text-ink/85">
-                    {skill}
-                  </li>
-                ))}
-              </ul>
+        <div className="flex flex-col">
+          {skillGroups.map((group, i) => (
+            <Reveal key={group.items[0]} delay={i * 0.05}>
+              <div
+                className={`grid items-baseline gap-3 border-t border-line py-6 md:grid-cols-[200px_1fr] md:gap-6 ${
+                  i === skillGroups.length - 1 ? 'border-b' : ''
+                }`}
+              >
+                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-dim">
+                  {t(group.label)}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      dir="ltr"
+                      className="border border-line px-2.5 py-1 font-mono text-[11px] uppercase text-dim"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
       </div>
-
-      <StackMarquee />
     </section>
   );
 };

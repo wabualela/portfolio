@@ -1,100 +1,85 @@
 # Design System — wailbox portfolio
 
-Editorial dark portfolio on OLED black. One page, one theme, one accent.
-Tokens live in `src/index.css` under `@theme`; every component consumes tokens, never raw values.
+Editorial portfolio, dual-theme (OLED-black base + paper light), one accent family.
+Tokens live in `src/index.css` under `@theme` (+ the `html[data-theme='light']` override block); every component consumes tokens, never raw values.
+Source of truth for the layout itself: the Claude Design canvas "Portfolio website UI mockups" and the synced "Wailbox Design System" project.
 
 ## Direction
 
 - **Aesthetic:** editorial / kinetic-type developer portfolio (Awwwards family).
 - **Dials:** `DESIGN_VARIANCE: 8` · `MOTION_INTENSITY: 7` · `VISUAL_DENSITY: 3`.
-- **Theme:** dark only, locked. No light mode by explicit owner decision.
+- **Themes:** dark is the brand default; light is a full first-class palette behind the nav toggle. Choice persists in localStorage.
 
 ## Color
 
-| Token | Value | Use |
-|---|---|---|
-| `--color-bg` | `#000000` | Page background (OLED black, owner decision) |
-| `--color-surface` | `#0A0A0A` | Elevated media blocks behind images |
-| `--color-line` | `rgb(255 255 255 / 0.1)` | All 1px borders and dividers |
-| `--color-ink` | `#F2F2F0` | Primary text |
-| `--color-dim` | `#8F8F89` | Secondary text (passes AA on black) |
-| `--color-accent` | `#CDFF3D` | Volt lime, the ONLY accent |
+| Token | Dark | Light | Use |
+|---|---|---|---|
+| `--color-bg` | `#000000` (OLED) | `#F4F4F1` (paper) | page background |
+| `--color-surface` | `#0A0A0A` | `#FFFFFF` | media blocks, code blocks |
+| `--color-line` | `white/10%` | `black/12%` | all 1px borders and dividers |
+| `--color-ink` | `#F2F2F0` | `#161613` | primary text |
+| `--color-dim` | `#8F8F89` | `#6B6B64` | secondary text |
+| `--color-body` | `#C9C9C4` | `#3D3D38` | article body copy |
+| `--color-accent` | `#CDFF3D` | `#CDFF3D` | **fills only**: primary CTA, filter chips, selection, cursor |
+| `--color-accent-ink` | `#CDFF3D` | `#567300` (olive) | **accent text**: hero highlight, active nav, hovers, tutorial labels |
+| `--color-nav` | `black/80%` | `#F4F4F1/85%` | stuck-nav backdrop |
+| `--ph-a/b/c` | `#101010/#1C1C1A/#0A0A0A` | `#E9E9E5/#DDDCD6/#EFEFEC` | `.ph-media` placeholder gradient |
 
 Rules:
-- Palette family: monochrome + single saturated pop. **No second accent, ever.**
-- Accent appears only as: hero role highlight, primary CTA background, active nav link,
-  hover states (links, arrows, email underline), selection color, scrollbar hover, blinking cursor in LangOverlay.
-- No glows, no gradients, no colored shadows. Depth comes from `--color-line` borders and spacing.
+- **Fill vs text:** volt is kept as a fill in both themes (black text on it). Volt *text* fails contrast on paper, so accent text always goes through `--color-accent-ink`. Never color text with `text-accent`.
+- No second accent, no gradients (placeholder media excepted), no glows, no shadows. Depth = 1px lines + space.
 
 ## Typography
 
-| Role | Font | Notes |
-|---|---|---|
-| Display + body (EN) | Space Grotesk Variable | `tracking-tight` on display sizes only |
-| Display + body (AR) | IBM Plex Sans Arabic 400/500/700 | applied via `html[lang="ar"]`; **letter-spacing always 0** |
-| Meta (dates, tags, labels, buttons) | JetBrains Mono Variable | continuity with the old terminal identity |
+Unchanged roles: Space Grotesk Variable (EN display+body), IBM Plex Sans Arabic 400/500/700 (AR, letter-spacing always 0), JetBrains Mono Variable (meta, dates, tags, buttons, labels).
 
-Scale:
-- Hero name: `clamp(3.5rem, 13vw, 10.5rem)` EN / `clamp(3.25rem, 12vw, 9rem)` AR, `leading-[0.95]`, uppercase.
-- Section headings: `text-4xl md:text-6xl font-bold` (Education steps down one size).
-- Body: `text-base/lg`, `text-dim`, `max-w-[65ch]`.
-- Mono meta: `text-xs` (11-12px), uppercase allowed on tags/buttons only.
-- Arabic never receives negative tracking; components gate `tracking-tight` behind `!isRtl`.
+Additions for articles: h1 `text-4xl md:text-6xl leading-[1.05]`; article body `17px leading-loose text-body max-w-65ch`; in-article h2 `text-2xl md:text-3xl`; code blocks mono 13px on `--color-surface`, always `dir="ltr"`.
 
 ## Shape & Rhythm
 
-- **Radius 0 everywhere** (all-sharp lock). No rounded corners on any element.
-- Borders: `1px` `--color-line`. No box shadows.
-- Container: `max-w-[1400px] mx-auto px-6 md:px-10`.
-- Section padding: `py-28 md:py-40`.
-- Grid: 12 columns; asymmetric spans (7/5, offset `md:mt-24`, full-width 21/8 media).
-- Every multi-column layout collapses to a single column below `md`.
+- Radius 0 everywhere, 1px `--color-line` borders, no shadows.
+- Container `max-w-[1400px] px-6 md:px-10`; article column `max-w-[860px]`.
+- Section padding `py-28 md:py-40`; sections after Work carry `border-t border-line`.
+- Everything collapses to a single column below `md`.
 
-## Motion
+## Page Map (post-mockup redesign)
 
-- Library: `motion` (`motion/react`). Ease token: `cubic-bezier(0.16, 1, 0.3, 1)`.
-- Durations 0.6-0.9s, stagger 60-80ms.
-- Vocabulary: hero mask-line reveal (load), `Reveal` whileInView (scroll), image scale 1.05 (hover),
-  arrow slide-in (hover), underline scale-x (hover), LangOverlay fade (state), one CSS marquee (Skills).
-- **Every animation is gated by `useReducedMotion()` or `prefers-reduced-motion` CSS.**
-- Never `window.addEventListener('scroll')`; use `useScroll` / IntersectionObserver.
-- Marquee budget: exactly one per page (stack logos strip).
+Routing: `react-router-dom` (BrowserRouter). Routes: `/`, `/writing`, `/writing/:slug`.
+Deployment note: the server must rewrite unknown paths to `index.html`.
 
-## Z-Index Scale
+**Home (`/`):** Hero → StackMarquee (directly under hero) → Selected Work → Experience → Skills → Writing teaser → Footer.
+**Writing (`/writing`):** h1 + intro + filter chips (All / Tutorials / Notes, volt fill on active) + full post rows.
+**Article (`/writing/:slug`):** back link, meta row (type/date/read-min), h1, excerpt, tags, 21/9 cover placeholder, body blocks (`p / h2 / code / quote`), prev/next grid.
 
-| Layer | z |
-|---|---|
-| NavBar | 40 |
-| MobileMenu | 50 |
-| LangOverlay | 60 |
-
-No other z-index values are allowed.
+Removed: Education section (dropped in the mockups).
 
 ## Components
 
 | Component | Layout family | Notes |
 |---|---|---|
-| `NavBar` | fixed bar, 64px | blur+border only after 24px scroll; active link = accent |
-| `Hero` | editorial manifesto, bottom-anchored | max 4 text elements; no scroll cue |
-| `Work` + `ProjectCard` | asymmetric 12-col grid (7/5 offset + full-width) | picsum placeholders until real shots arrive |
-| `Experience` | sticky heading + flowing entries | descriptions always visible (no hover-reveal) |
-| `Skills` + `StackMarquee` | 4-col label lists + logo marquee | real simple-icons SVGs, logos only, no captions |
-| `Education` | 2-col quiet rows | smallest section on the page |
-| `Footer` | giant email CTA | one contact intent on the whole page |
-| `Reveal` | primitive | the only scroll-reveal wrapper; don't hand-roll variants |
-| `LangOverlay` | signature interaction | black cover + target-language name + cursor, 760ms |
+| `NavBar` | fixed 64px | Work / Experience / Writing / Contact + lang + theme toggle (label = target theme) |
+| `Hero` | editorial manifesto | unchanged |
+| `StackMarquee` | full-bleed logo strip | sits between hero and Work; still the only marquee |
+| `Work` + `ProjectCard` | 12-col grid, slots: 7 / 5+120px offset / 12 wide / 6 / 6 | 5 cards incl. 2 writing-project placeholders; `.ph-media` gradient until real shots |
+| `Experience` | sticky heading + rows (`1fr/2fr`) | placeholder rows render title at `text-ink/45` |
+| `Skills` | label rows `200px/1fr` + tag chips | replaces the old 4-column lists |
+| `WritingSection` | rows `180px/1fr/110px` | 3 latest posts + "All posts ↗" |
+| `WritingPage` | filterable rows | date+type / title+excerpt / read-min ↗ |
+| `ArticlePage` | centered 860px article | block renderer; quote = `border-s-2 border-accent-ink` |
+| `Footer` | giant email CTA | on every route |
+| `Reveal` / `LangOverlay` | primitives | unchanged |
 
 ## Content Rules
 
-- All user-facing text lives in `src/content/site.ts` as `{ en, ar }` pairs. No hard-coded strings in components.
-- Latin-only fragments (emails, dates, tags, tech names) get `dir="ltr"` inside RTL flow.
-- **Zero em-dashes (`—`) or en-dash separators in visible text.** Ranges use hyphens (`2010 - 2014`).
-- Eyebrow labels above section headings: banned (headings carry the section alone). Mono labels inside grids (skill groups) are data labels, not eyebrows.
-- No section numbering, no scroll cues, no decorative dots, no locale/time strips.
-- CTAs: one label per intent. "Email me" (hero) and the footer email link share the contact intent deliberately; "View work" appears once.
+- All user-facing text in `src/content/site.ts` and `src/content/posts.ts` as `{ en, ar }` pairs.
+- Posts: `slug, date, type (tutorial|note), title, excerpt, readMin, tags, coverLabel, body[]`. Body blocks: `p`, `h2`, `code` (LTR string), `quote`.
+- Zero em-dashes in visible text. No eyebrows, no section numbering, no scroll cues, no decorative dots.
+- Latin fragments inside RTL flow get `dir="ltr"`; directional arrows get `rtl:-scale-x-100`.
 
-## RTL
+## Motion
 
-- `useLang` flips `document.documentElement.lang/dir`; choice persists in `localStorage`.
-- Use logical utilities (`ms-`, `pe-`, `text-start`) and `rtl:-scale-x-100` on directional arrows.
-- Marquee track reverses direction under RTL (`html[dir='rtl'] .marquee-track`).
+Unchanged tokens (ease `cubic-bezier(0.16,1,0.3,1)`, 0.6-0.9s, stagger 60-80ms), everything behind `useReducedMotion()` / CSS reduced-motion. Theme switch animates body background/color 0.3s (gated). One marquee max.
+
+## Z-Index Scale
+
+NavBar 40 · MobileMenu 50 · LangOverlay 60. Nothing else.
