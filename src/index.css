@@ -1,0 +1,92 @@
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+@import '@fontsource-variable/jetbrains-mono';
+@import 'tailwindcss';
+
+/*
+  Design tokens - single source of truth (see DESIGN.md).
+  Palette family: monochrome + single saturated pop (volt lime on OLED black).
+*/
+@theme {
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-line: rgb(255 255 255 / 0.1);
+  --color-ink: #f2f2f0;
+  --color-dim: #8f8f89;
+  --color-accent: #cdff3d;
+
+  --font-display: 'Space Grotesk Variable', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius: 0px;
+}
+
+html {
+  background-color: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Arabic: swap family, kill negative tracking (Arabic script must not be letter-spaced) */
+html[lang='ar'] body {
+  font-family: var(--font-arabic);
+}
+html[lang='ar'] :is(h1, h2, h3, h4, h5, h6) {
+  letter-spacing: 0;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #000000;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Single marquee on the page (Skills stack strip) */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 36s linear infinite;
+}
+html[dir='rtl'] .marquee-track {
+  animation-direction: reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

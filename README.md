@@ -1,20 +1,23 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# wailbox — portfolio
 
-# Run and deploy your AI Studio app
+Bilingual (EN/AR) personal portfolio for Wail Abualela, PHP & Moodle engineer.
+Editorial dark design on OLED black. React 19 + TypeScript + Vite + Tailwind v4 + Motion.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/drive/1GBDxYrpkfSS5E9QSwSzcex7oSiKJMq4_
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
 
-## Run Locally
+## Build
 
-**Prerequisites:**  Node.js
+```bash
+npm run build
+npm run preview
+```
 
+## Docs
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- `DESIGN.md` — the design system (tokens, typography, motion, rules)
+- `CLAUDE.md` — architecture notes for AI-assisted development
