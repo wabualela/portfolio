@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { X } from '@phosphor-icons/react';
+import { Moon, Sun, Translate, X } from '@phosphor-icons/react';
 import { useLang } from '@/lib/useLang';
 import { useTheme } from '@/lib/useTheme';
 import { ui } from '@/content/site';
@@ -84,15 +84,17 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                 onClose();
                 toggleLang();
               }}
-              className="border border-line px-6 py-3 font-mono text-xs text-dim active:scale-[0.98]"
+              aria-label={t(ui.switchLang)}
+              className="flex h-12 w-12 items-center justify-center border border-line text-dim active:scale-[0.98]"
             >
-              {t(ui.switchLang)}
+              <Translate size={20} />
             </button>
             <button
               onClick={toggleTheme}
-              className="border border-line px-6 py-3 font-mono text-xs uppercase text-dim active:scale-[0.98]"
+              aria-label={t(theme === 'dark' ? ui.themeToggle.toLight : ui.themeToggle.toDark)}
+              className="flex h-12 w-12 items-center justify-center border border-line text-dim active:scale-[0.98]"
             >
-              {t(theme === 'dark' ? ui.themeToggle.toLight : ui.themeToggle.toDark)}
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
         </motion.div>

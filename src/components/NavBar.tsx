@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useScroll, useMotionValueEvent } from 'motion/react';
-import { List } from '@phosphor-icons/react';
+import { List, Moon, Sun, Translate } from '@phosphor-icons/react';
 import { useLang } from '@/lib/useLang';
 import { useTheme } from '@/lib/useTheme';
 import { ui } from '@/content/site';
@@ -97,15 +97,19 @@ export const NavBar: React.FC = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleLang}
-              className="border border-line px-4 py-2 font-mono text-xs text-dim transition-colors duration-200 hover:border-ink hover:text-ink active:scale-[0.98]"
+              aria-label={t(ui.switchLang)}
+              title={t(ui.switchLang)}
+              className="flex h-10 w-10 items-center justify-center border border-line text-dim transition-colors duration-200 hover:border-ink hover:text-ink active:scale-[0.98]"
             >
-              {t(ui.switchLang)}
+              <Translate size={18} />
             </button>
             <button
               onClick={toggleTheme}
-              className="hidden border border-line px-3 py-2 font-mono text-xs uppercase tracking-wide text-dim transition-colors duration-200 hover:border-ink hover:text-ink active:scale-[0.98] sm:block"
+              aria-label={t(theme === 'dark' ? ui.themeToggle.toLight : ui.themeToggle.toDark)}
+              title={t(theme === 'dark' ? ui.themeToggle.toLight : ui.themeToggle.toDark)}
+              className="flex h-10 w-10 items-center justify-center border border-line text-dim transition-colors duration-200 hover:border-ink hover:text-ink active:scale-[0.98]"
             >
-              {t(theme === 'dark' ? ui.themeToggle.toLight : ui.themeToggle.toDark)}
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <button
               onClick={() => setMenuOpen(true)}
