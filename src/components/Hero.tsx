@@ -93,6 +93,13 @@ export const Hero: React.FC = () => {
           </a>
           <a
             dir="ltr"
+            href={`tel:${identity.phone.replace(/\s/g, '')}`}
+            className="transition-colors hover:text-accent-ink"
+          >
+            {identity.phone}
+          </a>
+          <a
+            dir="ltr"
             href={`https://${identity.website}`}
             target="_blank"
             rel="noopener noreferrer"

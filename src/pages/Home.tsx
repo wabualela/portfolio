@@ -4,6 +4,7 @@ import { StackMarquee } from '@/components/StackMarquee';
 import { Work } from '@/components/Work';
 import { Experience } from '@/components/Experience';
 import { Skills } from '@/components/Skills';
+import { Education } from '@/components/Education';
 import { WritingSection } from '@/components/WritingSection';
 
 export const Home: React.FC = () => (
@@ -13,6 +14,7 @@ export const Home: React.FC = () => (
     <Work />
     <Experience />
     <Skills />
+    <Education />
     <WritingSection />
   </main>
 );

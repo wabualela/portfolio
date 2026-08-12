@@ -29,11 +29,7 @@ export const Experience: React.FC = () => {
                 <div dir="ltr" className="font-mono text-xs tracking-[0.1em] text-dim">
                   {entry.period}
                 </div>
-                <h3
-                  className={`mt-3 text-2xl font-semibold md:text-3xl ${
-                    entry.placeholder ? 'text-ink/45' : 'text-ink'
-                  }`}
-                >
+                <h3 className="mt-3 text-2xl font-semibold text-ink md:text-3xl">
                   {t(entry.role)}
                 </h3>
                 <div className="mt-1 text-dim">{t(entry.company)}</div>
