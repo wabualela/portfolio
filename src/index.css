@@ -7,18 +7,18 @@
 
 /*
   Design tokens - single source of truth (see DESIGN.md).
-  Palette family: monochrome + single saturated pop (volt lime on OLED black).
+  Palette family: warm monochrome + single coffee accent on OLED black.
 */
 @theme {
   --color-bg: #000000;
   --color-surface: #0a0a0a;
   --color-line: rgb(255 255 255 / 0.1);
   --color-ink: #f2f2f0;
-  --color-dim: #8f8f89;
-  /* accent fill (CTA backgrounds) is volt in both themes */
-  --color-accent: #cdff3d;
-  /* accent TEXT: volt on dark, olive on light (volt text fails contrast on paper) */
-  --color-accent-ink: #cdff3d;
+  --color-dim: #918a83;
+  /* accent fill (CTA backgrounds) is caramel in both themes */
+  --color-accent: #c08552;
+  /* accent TEXT: caramel on dark, deeper coffee on light (contrast on paper) */
+  --color-accent-ink: #c08552;
   --color-body: #c9c9c4;
   --color-nav: rgb(0 0 0 / 0.8);
 
@@ -38,20 +38,20 @@
   --ph-c: #0a0a0a;
 }
 
-/* Light theme: paper + ink, volt kept for fills, olive for accent text */
+/* Light theme: warm paper + espresso ink, coffee accent */
 html[data-theme='light'] {
-  --color-bg: #f4f4f1;
+  --color-bg: #f5f1ec;
   --color-surface: #ffffff;
   --color-line: rgb(0 0 0 / 0.12);
-  --color-ink: #161613;
-  --color-dim: #6b6b64;
-  --color-accent-ink: #567300;
-  --color-body: #3d3d38;
-  --color-nav: rgb(244 244 241 / 0.85);
-  --ph-a: #e9e9e5;
-  --ph-b: #dddcd6;
-  --ph-c: #efefec;
-  --scroll-thumb: #c4c4bd;
+  --color-ink: #1a1512;
+  --color-dim: #6e645c;
+  --color-accent-ink: #6f4e37;
+  --color-body: #40382f;
+  --color-nav: rgb(245 241 236 / 0.85);
+  --ph-a: #ece7e1;
+  --ph-b: #e0d9d1;
+  --ph-c: #f0ebe5;
+  --scroll-thumb: #cfc6bb;
 }
 
 :root {

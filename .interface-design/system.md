@@ -4,7 +4,7 @@ Full spec lives in `DESIGN.md` (authoritative). This file is the quick-reference
 
 ## Direction and feel
 
-Editorial developer portfolio, typography-led. Dark is the brand default (OLED black `#000000`); light is a full paper palette (`#F4F4F1`) behind the nav toggle. Feels: sharp, technical, quiet confidence. Awwwards family, not SaaS.
+Editorial developer portfolio, typography-led. Dark is the brand default (OLED black `#000000`); light is a warm paper palette (`#F5F1EC`) behind the nav toggle. Feels: sharp, technical, quiet confidence. Awwwards family, not SaaS.
 
 ## Depth strategy
 
@@ -22,8 +22,8 @@ Base unit 4px (Tailwind). Density: airy (VISUAL_DENSITY 3). Section padding `py-
 
 ## Color rule (the one that bites)
 
-`--color-accent` (volt `#CDFF3D`) = FILLS only (CTA bg, filter active, selection, cursor).
-`--color-accent-ink` = accent TEXT (volt on dark, olive `#567300` on light). Never `text-accent`.
+`--color-accent` (caramel `#C08552`) = FILLS only (CTA bg, filter active, selection, cursor).
+`--color-accent-ink` = accent TEXT (caramel on dark, coffee `#6F4E37` on light). Never `text-accent`.
 
 ## Key component patterns
 

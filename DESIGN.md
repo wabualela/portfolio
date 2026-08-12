@@ -1,6 +1,6 @@
 # Design System — wailbox portfolio
 
-Editorial portfolio, dual-theme (OLED-black base + paper light), one accent family.
+Editorial portfolio, dual-theme (OLED-black base + warm paper light), one coffee accent family.
 Tokens live in `src/index.css` under `@theme` (+ the `html[data-theme='light']` override block); every component consumes tokens, never raw values.
 Source of truth for the layout itself: the Claude Design canvas "Portfolio website UI mockups" and the synced "Wailbox Design System" project.
 
@@ -14,19 +14,19 @@ Source of truth for the layout itself: the Claude Design canvas "Portfolio websi
 
 | Token | Dark | Light | Use |
 |---|---|---|---|
-| `--color-bg` | `#000000` (OLED) | `#F4F4F1` (paper) | page background |
+| `--color-bg` | `#000000` (OLED) | `#F5F1EC` (warm paper) | page background |
 | `--color-surface` | `#0A0A0A` | `#FFFFFF` | media blocks, code blocks |
 | `--color-line` | `white/10%` | `black/12%` | all 1px borders and dividers |
-| `--color-ink` | `#F2F2F0` | `#161613` | primary text |
-| `--color-dim` | `#8F8F89` | `#6B6B64` | secondary text |
-| `--color-body` | `#C9C9C4` | `#3D3D38` | article body copy |
-| `--color-accent` | `#CDFF3D` | `#CDFF3D` | **fills only**: primary CTA, filter chips, selection, cursor |
-| `--color-accent-ink` | `#CDFF3D` | `#567300` (olive) | **accent text**: hero highlight, active nav, hovers, tutorial labels |
-| `--color-nav` | `black/80%` | `#F4F4F1/85%` | stuck-nav backdrop |
-| `--ph-a/b/c` | `#101010/#1C1C1A/#0A0A0A` | `#E9E9E5/#DDDCD6/#EFEFEC` | `.ph-media` placeholder gradient |
+| `--color-ink` | `#F2F2F0` | `#1A1512` (espresso) | primary text |
+| `--color-dim` | `#918A83` | `#6E645C` | secondary text |
+| `--color-body` | `#C9C9C4` | `#40382F` | article body copy |
+| `--color-accent` | `#C08552` | `#C08552` | **fills only**: primary CTA, filter chips, selection, cursor |
+| `--color-accent-ink` | `#C08552` | `#6F4E37` (coffee) | **accent text**: hero highlight, active nav, hovers, tutorial labels |
+| `--color-nav` | `black/80%` | `#F5F1EC/85%` | stuck-nav backdrop |
+| `--ph-a/b/c` | `#101010/#1C1C1A/#0A0A0A` | `#ECE7E1/#E0D9D1/#F0EBE5` | `.ph-media` placeholder gradient |
 
 Rules:
-- **Fill vs text:** volt is kept as a fill in both themes (black text on it). Volt *text* fails contrast on paper, so accent text always goes through `--color-accent-ink`. Never color text with `text-accent`.
+- **Fill vs text:** caramel `#C08552` is the fill in both themes (black text on it). On paper, accent *text* needs the deeper coffee `#6F4E37`, so accent text always goes through `--color-accent-ink`. Never color text with `text-accent`.
 - No second accent, no gradients (placeholder media excepted), no glows, no shadows. Depth = 1px lines + space.
 
 ## Typography
@@ -47,11 +47,11 @@ Additions for articles: h1 `text-4xl md:text-6xl leading-[1.05]`; article body `
 Routing: `react-router-dom` (BrowserRouter). Routes: `/`, `/writing`, `/writing/:slug`.
 Deployment note: the server must rewrite unknown paths to `index.html`.
 
-**Home (`/`):** Hero → StackMarquee (directly under hero) → Selected Work → Experience → Skills → Writing teaser → Footer.
-**Writing (`/writing`):** h1 + intro + filter chips (All / Tutorials / Notes, volt fill on active) + full post rows.
+**Home (`/`):** Hero → StackMarquee (directly under hero) → Selected Work → Experience → Skills → Education → Writing teaser → Footer.
+**Writing (`/writing`):** h1 + intro + filter chips (All / Tutorials / Notes, caramel fill on active) + full post rows.
 **Article (`/writing/:slug`):** back link, meta row (type/date/read-min), h1, excerpt, tags, 21/9 cover placeholder, body blocks (`p / h2 / code / quote`), prev/next grid.
 
-Removed: Education section (dropped in the mockups).
+Education returned as a quiet two-column section (real CV data).
 
 ## Components
 
@@ -60,8 +60,8 @@ Removed: Education section (dropped in the mockups).
 | `NavBar` | fixed 64px | Work / Experience / Writing / Contact + lang + theme toggle (label = target theme) |
 | `Hero` | editorial manifesto | unchanged |
 | `StackMarquee` | full-bleed logo strip | sits between hero and Work; still the only marquee |
-| `Work` + `ProjectCard` | 12-col grid, slots: 7 / 5+120px offset / 12 wide / 6 / 6 | 5 cards incl. 2 writing-project placeholders; `.ph-media` gradient until real shots |
-| `Experience` | sticky heading + rows (`1fr/2fr`) | placeholder rows render title at `text-ink/45` |
+| `Work` + `ProjectCard` | 12-col grid, slots: 7 / 5+120px offset / 12 wide / 6 / 6 | 5 real projects; `.ph-media` gradient until real screenshots |
+| `Experience` | sticky heading + rows (`1fr/2fr`) | full 12-role history, newest first |
 | `Skills` | label rows `200px/1fr` + tag chips | replaces the old 4-column lists |
 | `WritingSection` | rows `180px/1fr/110px` | 3 latest posts + "All posts ↗" |
 | `WritingPage` | filterable rows | date+type / title+excerpt / read-min ↗ |
