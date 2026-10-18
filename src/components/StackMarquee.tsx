@@ -7,7 +7,7 @@ import {
   siDocker,
   siNginx,
   siReact,
-  siVuedotjs,
+  siRedis,
   siGit,
   siWordpress,
 } from 'simple-icons';
@@ -21,7 +21,7 @@ const ICONS = [
   siDocker,
   siNginx,
   siReact,
-  siVuedotjs,
+  siRedis,
   siGit,
   siWordpress,
 ];
