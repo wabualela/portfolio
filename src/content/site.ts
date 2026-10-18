@@ -41,7 +41,7 @@ export const identity = {
   shortName: { en: 'Wail', ar: 'وائل' },
   email: 'wailabualela@gmail.com',
   phone: '+966 50 259 2707',
-  website: 'wailbox.com',
+  website: 'wail.fyi',
   github: 'https://github.com/wabualela',
   linkedin: 'https://www.linkedin.com/in/wabualela',
   location: { en: 'Riyadh, Saudi Arabia', ar: 'الرياض، السعودية' },
@@ -61,13 +61,13 @@ export const ui = {
   },
   hero: {
     rolePre: {
-      en: 'Full stack PHP developer building ',
-      ar: 'مطور PHP متكامل يبني ',
+      en: 'Senior Moodle developer building ',
+      ar: 'مطوّر Moodle أوّل يبني ',
     },
     roleAccent: { en: 'e-learning platforms', ar: 'منصات التعليم الإلكتروني' },
     rolePost: {
-      en: ' with Moodle and Laravel.',
-      ar: ' بـ Moodle و Laravel.',
+      en: ' for universities, academies and nonprofits, from custom plugins to the servers they run on.',
+      ar: ' للجامعات والأكاديميات والجمعيات، من الإضافات المخصّصة إلى الخوادم التي تعمل عليها.',
     },
     ctaWork: { en: 'View work', ar: 'شاهد الأعمال' },
     ctaEmail: { en: 'Email me', ar: 'راسلني' },
@@ -103,107 +103,128 @@ export const ui = {
   },
 } as const;
 
-/* TODO: real screenshots replace the gradient placeholders */
+/* Media: real screenshots replace the neutral gradient blocks once provided (phLabel stays empty) */
 export const projects: Project[] = [
   {
-    slug: 'pnu-elearning',
-    title: 'PNU e-Learning',
+    slug: 'moddaker',
+    title: 'Moddaker',
     desc: {
-      en: "Princess Nourah University's Moodle platform: custom features, performance tuning, technical administration, and direct collaboration with university staff.",
-      ar: 'منصة جامعة الأميرة نورة على Moodle: ميزات مخصّصة، وضبط أداء، وإدارة تقنية، وتعاون مباشر مع فريق الجامعة.',
+      en: 'Merged six standalone language platforms (Arabic, English, Indonesian, French, Urdu, Portuguese) into one Moodle site teaching Al-Mukhtasar in six languages, with consolidated learner data and Telegram sign-up for learners without email. Launched in Ramadan 2026.',
+      ar: 'دمج ست منصات لغوية مستقلة (العربية والإنجليزية والإندونيسية والفرنسية والأردية والبرتغالية) في موقع Moodle واحد يدرّس كتاب المختصر بست لغات، مع توحيد بيانات الدارسين والتسجيل عبر Telegram لمن لا يملك بريدًا. أُطلقت في رمضان 2026.',
     },
-    tags: ['Moodle', 'PHP', 'MySQL'],
-    url: 'https://elearning.pnu.edu.sa',
-    phLabel: 'Project screenshot 1400 × 900',
+    tags: ['Moodle', 'Migration', 'Telegram'],
+    url: 'https://moddaker.com',
+    phLabel: '',
   },
   {
     slug: 'alborhan-academy',
     title: 'Alborhan Academy',
     desc: {
-      en: 'Religious education portal for the Alborhan Organization, alongside Mobeen Academy: upgrades, customization, infrastructure, and performance.',
-      ar: 'بوابة تعليم شرعي لجمعية البرهان، إلى جانب أكاديمية مبين: ترقيات وتخصيص وبنية تحتية وأداء.',
+      en: 'Performance engineering on a Moodle 4.5 platform serving 8,000+ learners: home-page queries cut from 853 to 219 and p95 latency at 300 concurrent users from 11.0 s to 4.4 s with zero errors, after moving it to self-managed servers and upgrading Moodle.',
+      ar: 'هندسة أداء لمنصة Moodle 4.5 تخدم أكثر من 8,000 دارس: خفض استعلامات الصفحة الرئيسية من 853 إلى 219، وزمن الاستجابة p95 عند 300 مستخدم متزامن من 11.0 إلى 4.4 ثانية دون أخطاء، بعد نقلها إلى خوادم مُدارة ذاتيًا وترقية Moodle.',
     },
-    tags: ['Moodle', 'Docker', 'Nginx'],
-    url: 'https://academy.alborhan.com',
-    phLabel: 'Project screenshot 1400 × 900',
+    tags: ['Moodle', 'PHP-FPM', 'Redis'],
+    phLabel: '',
   },
   {
-    slug: 'moddaker',
-    title: 'Moddaker',
+    slug: 'africa-academy',
+    title: 'Africa Academy',
     desc: {
-      en: 'Quran memorization platform: administration and scaling, Redis fixes, Ubuntu security updates, and migration to PHP 8.3.',
-      ar: 'منصة لحفظ القرآن: إدارة وتوسيع، وإصلاحات Redis، وتحديثات أمنية لـ Ubuntu، وترحيل إلى PHP 8.3.',
+      en: 'Moodle platforms teaching Sharia studies to African learners in their own languages (Amharic and Oromo live, Hausa and Swahili in preparation): returned the academy to Moodle from WordPress LMS plugins, migrated every server to Contabo, and shipped a customized Moodle App for the Amharic platform on Google Play.',
+      ar: 'منصات Moodle تدرّس العلوم الشرعية للمتعلمين الأفارقة بلغاتهم (الأمهرية والأورومية تعملان، والهوسا والسواحيلية قيد التجهيز): إعادة الأكاديمية إلى Moodle بعد تجربة إضافات WordPress التعليمية، ونقل كل الخوادم إلى Contabo، وإطلاق تطبيق Moodle مخصّص للمنصة الأمهرية على Google Play.',
     },
-    tags: ['Moodle', 'PHP', 'Redis'],
-    url: 'https://moddaker.com',
-    phLabel: 'Project screenshot 2100 × 900',
+    tags: ['Moodle', 'Moodle App', 'Linux'],
+    url: 'https://africaacademy.com',
+    phLabel: '',
   },
   {
-    slug: 'ibn-kathir-institute',
-    title: 'Imam Ibn Kathir Institute',
+    slug: 'iua-learn',
+    title: 'IUA Learn',
     desc: {
-      en: 'Pro bono: designed and launched a remote Moodle platform end to end (server setup, customization, course management, and user training), enabling remote religious education.',
-      ar: 'عمل خيري: تصميم وإطلاق منصة Moodle عن بُعد من الصفر: إعداد الخادم، والتخصيص، وإدارة المقررات، وتدريب المستخدمين، لتمكين التعليم الشرعي عن بُعد.',
+      en: 'Moodle 5.1 distance-learning platform for about 20,000 students across 22 colleges at the International University of Africa, delivered between June and August 2025 with staff training.',
+      ar: 'منصة تعليم عن بُعد على Moodle 5.1 لنحو 20,000 طالب في 22 كلية بجامعة أفريقيا العالمية، سُلّمت بين يونيو وأغسطس 2025 مع تدريب الكوادر.',
     },
-    tags: ['Moodle', 'Linux', 'Volunteer'],
-    phLabel: 'Project screenshot 1400 × 900',
+    tags: ['Moodle 5.1', 'University', 'Training'],
+    url: 'https://lms.iua.edu.sd',
+    phLabel: '',
   },
   {
     slug: 'alborhan-elections',
     title: 'Alborhan Elections',
     desc: {
-      en: "Board elections platform for the Alborhan Organization: Laravel foundation with Inertia, React 19, Tailwind 4, and Pest testing.",
-      ar: 'منصة انتخابات مجلس إدارة جمعية البرهان: أساس Laravel مع Inertia و React 19 و Tailwind 4 واختبارات Pest.',
+      en: "Electronic voting platform for the association's board elections, built in 10 working days: OTP login over SMS, passkeys, proxy voting, tie-breaking with a secure random draw, an append-only audit log, and an installable PWA.",
+      ar: 'منصة تصويت إلكتروني لانتخابات مجلس إدارة الجمعية، بُنيت في 10 أيام عمل: دخول برمز تحقق عبر SMS، ومفاتيح المرور (Passkeys)، والتصويت بالإنابة، وحسم التعادل بسحب عشوائي آمن، وسجل تدقيق لا يُعدَّل، وتطبيق ويب قابل للتثبيت.',
     },
-    tags: ['Laravel', 'Inertia', 'React'],
-    phLabel: 'Project screenshot 1400 × 900',
+    tags: ['Laravel', 'React', 'PWA'],
+    phLabel: '',
   },
 ];
 
 export const experience: ExperienceEntry[] = [
   {
-    period: 'DEC 2024 - NOV 2025',
+    period: 'JUN 2025 - PRESENT',
     company: {
-      en: 'Crystal International Technology · Riyadh (Remote)',
-      ar: 'كريستال العالمية للتقنية · الرياض (عن بُعد)',
+      en: 'Al-Siraj Association · Riyadh (Remote)',
+      ar: 'جمعية السراج · الرياض (عن بُعد)',
     },
-    role: { en: 'Senior Moodle Developer', ar: 'مطوّر Moodle أوّل' },
+    role: {
+      en: 'Senior Moodle Developer & eLearning Platform Engineer (Part-time)',
+      ar: 'مطوّر Moodle أوّل ومهندس منصات تعليم إلكتروني (دوام جزئي)',
+    },
     desc: {
-      en: 'Managed and developed the Princess Nourah University e-learning platform in direct collaboration with university staff: customization, technical administration, on-demand support, and incident resolution.',
-      ar: 'إدارة وتطوير منصة التعليم الإلكتروني لجامعة الأميرة نورة بالتعاون المباشر مع فريق الجامعة: تخصيص، وإدارة تقنية، ودعم عند الطلب، وحلّ الأعطال.',
+      en: "Own Africa Academy's Moodle language platforms end to end: servers, Moodle setup, hardening, scaling around registration and exams, the Amharic Moodle App, and staff training. Delivered the International University of Africa's Moodle 5.1 platform and support the Islamic University of Kenya's platform.",
+      ar: 'إدارة منصات أكاديمية أفريقيا اللغوية على Moodle من البداية للنهاية: الخوادم والإعداد والتأمين والتوسعة في مواسم التسجيل والاختبارات، وتطبيق Moodle للمنصة الأمهرية، وتدريب الفريق. سلّمت منصة جامعة أفريقيا العالمية على Moodle 5.1، وأدعم منصة الجامعة الإسلامية في كينيا.',
     },
   },
   {
     period: 'OCT 2024 - PRESENT',
-    company: { en: 'Alborhan Organization · Riyadh', ar: 'جمعية البرهان لخدمة السنة والقرآن · الرياض' },
+    company: {
+      en: 'Al-Burhan Association · Riyadh (Hybrid)',
+      ar: 'جمعية البرهان · الرياض (هجين)',
+    },
     role: {
-      en: 'PHP & Moodle Developer (Part-time)',
-      ar: 'مطوّر PHP و Moodle (دوام جزئي)',
+      en: 'Senior Moodle Developer & eLearning Platforms Manager (Part-time)',
+      ar: 'مطوّر Moodle أوّل ومدير منصات التعليم الإلكتروني (دوام جزئي)',
     },
     desc: {
-      en: 'Upgrading, customizing, and administering Alborhan Academy and Moddaker: performance optimization, server infrastructure, custom user journeys, scalability, and user experience.',
-      ar: 'ترقية وتخصيص وإدارة أكاديمية البرهان ومنصة مدّكر: تحسين الأداء، وإدارة البنية التحتية والخوادم، وتخصيص مسارات المستخدم، وضمان قابلية التوسّع وتجربة الاستخدام.',
+      en: "Run Moddaker and Alborhan Academy: merged Moddaker's six language platforms into one site, moved and upgraded Alborhan Academy, and cut its p95 latency from 11.0 s to 4.4 s. Manage the association's servers and online services, and build its Moodle plugins and Laravel systems.",
+      ar: 'إدارة منصتي مدّكر وأكاديمية البرهان: دمج منصات مدّكر الست في موقع واحد، ونقل أكاديمية البرهان وترقيتها، وخفض زمن الاستجابة p95 فيها من 11.0 إلى 4.4 ثانية. إدارة خوادم الجمعية وخدماتها الإلكترونية، وتطوير إضافات Moodle وأنظمة Laravel.',
     },
   },
   {
-    period: 'JAN 2023 - OCT 2024',
+    period: 'DEC 2024 - NOV 2025',
+    company: {
+      en: 'Crystal International Technology · Riyadh (Hybrid)',
+      ar: 'كريستال العالمية للتقنية · الرياض (هجين)',
+    },
+    role: {
+      en: 'Moodle Developer, Princess Nourah University (contract placement)',
+      ar: 'مطوّر Moodle لجامعة الأميرة نورة (تعاقد)',
+    },
+    desc: {
+      en: "Developed and administered components of the university's e-learning platform with its platform team, and customized an exam-booking plugin for its ESOL exams with session filters, booking and payment through Moodle.",
+      ar: 'تطوير وإدارة مكوّنات في منصة التعليم الإلكتروني للجامعة بالتنسيق اليومي مع فريقها، وتخصيص إضافة لحجز اختبارات ESOL تتيح تصفية الجلسات والحجز والدفع عبر Moodle.',
+    },
+  },
+  {
+    period: 'JAN 2023 - SEP 2024',
     company: {
       en: 'Izdiad for Integrated Services and Solutions',
       ar: 'ازدياد للخدمات والحلول المتكاملة',
     },
-    role: { en: 'Full-Stack Developer', ar: 'مطوّر متكامل' },
+    role: { en: 'Senior Moodle Developer', ar: 'مطوّر Moodle أوّل' },
     desc: {
-      en: 'Maintained, administered, and developed Moodle-based e-learning platforms; managed hosting on DigitalOcean; built WordPress front sites for education initiatives.',
-      ar: 'صيانة وإدارة وتطوير منصات تعليم إلكتروني مبنية على Moodle، والإشراف على الاستضافة على DigitalOcean، وتطوير مواقع WordPress واجهية للمبادرات التعليمية.',
+      en: "Built and ran Moodle platforms for the company's clients, including Moddaker and Africa Academy: upgraded Moddaker's four language sites and built its Urdu site from scratch, implemented Google login, paid enrolment and H5P, and provisioned LEMP servers.",
+      ar: 'بناء وتشغيل منصات Moodle لعملاء الشركة، ومنها مدّكر وأكاديمية أفريقيا: ترقية مواقع مدّكر الأربعة وبناء موقعها الأردي من الصفر، وتنفيذ الدخول عبر Google والتسجيل المدفوع وH5P، وتجهيز خوادم LEMP.',
     },
   },
   {
     period: 'NOV 2022 - JAN 2023',
     company: { en: 'Khlel Platform', ar: 'منصة خليل' },
-    role: { en: 'Web Developer', ar: 'مطوّر ويب' },
+    role: { en: 'Laravel Developer', ar: 'مطوّر Laravel' },
     desc: {
-      en: 'Developed, updated, and tested features with Laravel and Inertia.js; frontend work with Bootstrap, jQuery, and React; deployments managed via Laravel Forge.',
-      ar: 'تطوير وتحديث واختبار ميزات جديدة باستخدام Laravel و Inertia.js، وتطوير الواجهات بـ Bootstrap و jQuery و React، وإدارة النشر عبر Laravel Forge.',
+      en: 'Built, debugged and tested features on a Laravel platform for Quran study circles, with React via Inertia.js for interactive features and deployments through Laravel Forge.',
+      ar: 'بناء ميزات وتصحيحها واختبارها في منصة Laravel لحلقات القرآن، مع React عبر Inertia.js للواجهات التفاعلية والنشر عبر Laravel Forge.',
     },
   },
   {
@@ -211,17 +232,17 @@ export const experience: ExperienceEntry[] = [
     company: { en: 'Freelance (Fiverr)', ar: 'عمل حر (Fiverr)' },
     role: { en: 'Freelance Web Developer', ar: 'مطوّر ويب مستقل' },
     desc: {
-      en: 'Built Moodle platforms, Laravel projects, and Moodle App solutions for clients; custom builds, UX improvements, and technical support, with strong ratings and repeat clients.',
-      ar: 'بناء منصات Moodle ومشاريع Laravel وحلول Moodle App للعملاء: تطوير مخصّص، وتحسين تجربة الاستخدام، ودعم تقني، مع تقييمات قوية وتكرار التعامل.',
+      en: 'Customized Moodle platforms and Moodle mobile apps for educational institutions, and delivered Laravel features for client web applications, from requirements to deployment and support.',
+      ar: 'تخصيص منصات Moodle وتطبيقاتها للجوال لمؤسسات تعليمية، وتطوير ميزات Laravel لتطبيقات العملاء من المتطلبات حتى النشر والدعم.',
     },
   },
   {
     period: 'JUL 2021 - OCT 2021',
     company: { en: 'Intelligent Projects · Khartoum', ar: 'المشاريع الذكية · الخرطوم' },
-    role: { en: 'Full Stack Developer', ar: 'مطوّر متكامل' },
+    role: { en: 'Web Developer', ar: 'مطوّر ويب' },
     desc: {
-      en: 'Web solutions with PHP, Laravel, and Livewire; Bootstrap and Alpine.js on the frontend; web services and payment integrations.',
-      ar: 'حلول ويب باستخدام PHP و Laravel و Livewire، وواجهات بـ Bootstrap و Alpine.js، والعمل على Web Services وتكاملات الدفع.',
+      en: "Developed client web applications with Laravel, Livewire and WordPress, and maintained the company's portfolio of web applications.",
+      ar: 'تطوير تطبيقات ويب للعملاء باستخدام Laravel و Livewire و WordPress، وصيانة تطبيقات الشركة.',
     },
   },
   {
@@ -230,28 +251,28 @@ export const experience: ExperienceEntry[] = [
       en: 'MSC For Information Technology · Khartoum',
       ar: 'MSC لتقنية المعلومات · الخرطوم',
     },
-    role: { en: 'Web Application Developer', ar: 'مطوّر تطبيقات ويب' },
+    role: { en: 'Software Engineer', ar: 'مهندس برمجيات' },
     desc: {
-      en: 'Built sites with Laravel and Livewire, using Vue.js, Tailwind CSS, and Bootstrap; Moodle LMS builds; hosting management and Git/GitHub workflows.',
-      ar: 'تطوير مواقع باستخدام Laravel و Livewire مع Vue.js و Tailwind CSS و Bootstrap، وبناء أنظمة LMS بـ Moodle، وإدارة الاستضافة والعمل بـ Git و GitHub.',
+      en: "Laravel back-end developer on projects for clients outside Sudan, including parts of a client's admin dashboard.",
+      ar: 'مطوّر واجهات خلفية بـ Laravel في مشاريع لعملاء خارج السودان، منها أجزاء من لوحة تحكم لأحد العملاء.',
     },
   },
   {
     period: 'NOV 2020 - MAR 2021',
     company: { en: 'Career break', ar: 'استراحة مهنية' },
-    role: { en: 'Focused self-development', ar: 'تطوير ذاتي مركّز' },
+    role: { en: 'PHP and Laravel focus', ar: 'تركيز على PHP و Laravel' },
     desc: {
-      en: 'Deep-dive into Laravel and PHP: self-study, hands-on experiments, and small freelance projects.',
-      ar: 'تعمّق في Laravel و PHP: دراسة ذاتية، وتجارب عملية، ومشاريع حرة صغيرة.',
+      en: 'Worked on open-source projects and freelance Laravel projects for external clients.',
+      ar: 'العمل على مشاريع مفتوحة المصدر ومشاريع Laravel حرة لعملاء خارجيين.',
     },
   },
   {
-    period: 'SEP 2019 - NOV 2020',
+    period: 'OCT 2019 - NOV 2020',
     company: { en: 'Innovative Solutions · Khartoum', ar: 'الحلول المبتكرة · الخرطوم' },
-    role: { en: 'Lead Web Application Developer', ar: 'قائد تطوير تطبيقات الويب' },
+    role: { en: 'Moodle Developer', ar: 'مطوّر Moodle' },
     desc: {
-      en: 'Led e-learning platform development on Moodle; built iOS/Android apps with Ionic; managed domains and servers; developed custom payment plugins for MBok and Sudani.',
-      ar: 'قيادة تطوير منصة تعلم إلكتروني على Moodle، وبناء تطبيقات iOS و Android بـ Ionic، وإدارة النطاقات والخوادم، وتطوير إضافات دفع مخصّصة مع MBok و Sudani.',
+      en: 'Continued the D2EL Moodle platform and its iOS and Android apps, built a Sudani mobile-payment enrolment plugin, and built the Ivory Private School platform used for remote teaching during the COVID-19 closures, with staff workshops.',
+      ar: 'متابعة تطوير منصة D2EL على Moodle وتطبيقاتها لـ iOS و Android، وبناء إضافة تسجيل بالدفع عبر سوداني، وبناء منصة مدرسة آيفوري الخاصة التي اعتمدت عليها في التعليم عن بُعد خلال إغلاق كورونا، مع ورش لكادر المدرسة.',
     },
   },
   {
@@ -266,10 +287,10 @@ export const experience: ExperienceEntry[] = [
   {
     period: 'NOV 2017 - JUN 2019',
     company: { en: 'Innovative Solutions · Khartoum', ar: 'الحلول المبتكرة · الخرطوم' },
-    role: { en: 'Junior Web Application Developer', ar: 'مطوّر تطبيقات ويب مبتدئ' },
+    role: { en: 'Junior Software Engineer', ar: 'مهندس برمجيات مبتدئ' },
     desc: {
-      en: 'Worked on Moodle and PHP; developed an e-learning platform; built iOS/Android apps with Ionic; managed domains and hosting; published apps to the stores and trained users.',
-      ar: 'العمل على Moodle و PHP، وتطوير منصة تعليم إلكتروني، وبناء تطبيقات iOS و Android بـ Ionic، وإدارة النطاق والاستضافة، ورفع التطبيقات على المتاجر وتدريب المستخدمين.',
+      en: 'Built the University of Science and Technology, Omdurman learning system and trained its faculty, then worked on D2EL, a paid Moodle platform for secondary-certificate students: built its Moodle App for both stores and an MBok payment-enrolment plugin.',
+      ar: 'بناء نظام التعلم لجامعة العلوم والتقانة بأم درمان وتدريب أعضاء هيئة التدريس، ثم العمل على D2EL، منصة Moodle مدفوعة لطلاب الشهادة السودانية: بناء تطبيقها على المتجرين وإضافة تسجيل بالدفع عبر بنكك.',
     },
   },
   {
@@ -304,28 +325,32 @@ export const education: EducationEntry[] = [
       ar: 'جامعة الخرطوم',
     },
     degree: {
-      en: 'Master of Computer Science (Incomplete)',
-      ar: 'ماجستير علوم الحاسوب (غير مكتمل)',
+      en: 'Master of Computer Science, Information Security (studied up to the final semester, not completed)',
+      ar: 'ماجستير علوم الحاسوب، أمن المعلومات (درست حتى الفصل الأخير ولم أكمله)',
     },
-    period: '2017',
+    period: '2017 - 2018',
   },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: { en: 'Backend', ar: 'الواجهة الخلفية' },
-    items: ['PHP', 'Laravel', 'Livewire', 'MySQL / MariaDB', 'Redis', 'REST APIs'],
+    label: { en: 'E-Learning', ar: 'التعليم الإلكتروني' },
+    items: ['Moodle Development', 'Custom Plugins', 'Web Services', 'Moodle App', 'H5P', 'Edwiser RemUI'],
   },
   {
-    label: { en: 'E-Learning', ar: 'التعليم الإلكتروني' },
-    items: ['Moodle Development', 'Custom Plugins', 'Moodle App', 'WordPress'],
+    label: { en: 'Backend', ar: 'الواجهة الخلفية' },
+    items: ['PHP', 'Laravel', 'Livewire', 'Inertia.js', 'MySQL / MariaDB', 'Redis', 'REST APIs'],
   },
   {
     label: { en: 'Frontend', ar: 'الواجهة الأمامية' },
-    items: ['JavaScript', 'React', 'Vue.js', 'Inertia.js', 'Tailwind CSS', 'Bootstrap', 'jQuery', 'Ionic'],
+    items: ['JavaScript', 'React', 'Tailwind CSS', 'Bootstrap', 'jQuery', 'Ionic', 'WordPress'],
   },
   {
     label: { en: 'DevOps', ar: 'التشغيل' },
-    items: ['Linux', 'Nginx', 'Docker', 'DigitalOcean', 'Laravel Forge', 'Git'],
+    items: ['Linux', 'Nginx', 'PHP-FPM', 'Docker', 'GitHub Actions', 'Cloudflare', 'DigitalOcean', 'Contabo', 'Git'],
+  },
+  {
+    label: { en: 'Security', ar: 'الأمان' },
+    items: ['Server Hardening', 'Incident Response', 'WebAuthn Passkeys', 'OAuth'],
   },
 ];
