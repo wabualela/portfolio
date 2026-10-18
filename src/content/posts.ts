@@ -27,162 +27,78 @@ export const postTypeLabel: Record<PostType, Localized> = {
   note: { en: 'NOTE', ar: 'ملاحظة' },
 };
 
-/* TODO: placeholder posts from the design mockups; real articles replace these */
+/* Real articles only. coverLabel stays empty until a cover image exists. */
 export const posts: Post[] = [
   {
-    slug: 'scaling-moodle-performance',
-    date: { en: 'JUL 2026', ar: 'يوليو 2026' },
-    type: 'tutorial',
+    slug: 'alborhan-academy-performance',
+    date: { en: 'AUG 2026', ar: 'أغسطس 2026' },
+    type: 'note',
     title: {
-      en: 'Scaling Moodle: performance tuning notes',
-      ar: 'توسيع Moodle: ملاحظات في ضبط الأداء',
+      en: 'Fixing a slow Moodle 4.5 site: 11 s to 4.4 s at 300 users',
+      ar: 'إصلاح بطء منصة Moodle 4.5: من 11 ثانية إلى 4.4 عند 300 مستخدم',
     },
     excerpt: {
-      en: 'Caching layers, MUC stores, and the queries that actually matter when a semester starts.',
-      ar: 'طبقات الـ cache ومخازن MUC والاستعلامات التي تهمّ فعلًا عند بداية الفصل الدراسي.',
+      en: 'What made Alborhan Academy slow for 8,000+ learners, what I changed, and how I measured it before and after.',
+      ar: 'ما الذي أبطأ أكاديمية البرهان لأكثر من 8,000 دارس، وما الذي غيّرته، وكيف قست النتيجة قبل وبعد.',
     },
-    readMin: 12,
-    tags: ['Moodle', 'Performance', 'MySQL'],
-    coverLabel: 'Cover image 1720 × 740',
+    readMin: 3,
+    tags: ['Moodle', 'Performance', 'PHP-FPM'],
+    coverLabel: '',
     body: [
       {
         kind: 'p',
         text: {
-          en: "Placeholder body copy: every semester start is a load test you didn't schedule. This tutorial walks through the layers that keep a large Moodle instance responsive, in the order they pay off.",
-          ar: 'نص مؤقت: كل بداية فصل دراسي هي اختبار حِمل لم تخطط له. هذا الشرح يمرّ على الطبقات التي تُبقي منصة Moodle كبيرة سريعة الاستجابة، بترتيب مردودها.',
+          en: 'Alborhan Academy runs Moodle 4.5 with the Edwiser RemUI theme for more than 8,000 learners. Pages were slow on normal days and stalled under load. A load test aimed at 300 concurrent users stalled at 104 users, with a p95 of 11.0 seconds.',
+          ar: 'تعمل أكاديمية البرهان على Moodle 4.5 بقالب Edwiser RemUI لأكثر من 8,000 دارس. كانت الصفحات بطيئة في الأيام العادية وتتوقف تحت الضغط. وفي اختبار حِمل يستهدف 300 مستخدم متزامن توقّف الموقع عند 104 مستخدمين، وبلغ زمن الاستجابة p95 نحو 11.0 ثانية.',
         },
       },
+      { kind: 'h2', text: { en: 'What I found', ar: 'ما الذي وجدته' } },
       {
-        kind: 'h2',
-        text: { en: '1. Start with the cache stores', ar: '1. ابدأ بمخازن الـ cache' },
+        kind: 'p',
+        text: {
+          en: 'PHP-FPM had only 5 workers, so requests queued long before the database was busy. Moodle caching (MUC) was disabled, so every page rebuilt what it could have read from cache.',
+          ar: 'كان لدى PHP-FPM خمسة عمّال فقط، فتصطف الطلبات قبل أن تنشغل قاعدة البيانات أصلًا. وكانت ذاكرة Moodle المؤقتة (MUC) معطّلة، فتعيد كل صفحة بناء ما كان يمكن قراءته من الذاكرة المؤقتة.',
+        },
       },
       {
         kind: 'p',
         text: {
-          en: 'Placeholder: map MUC application caches to Redis before touching anything else. The config is two lines; the win is every page load.',
-          ar: 'نص مؤقت: وجِّه مخازن MUC التطبيقية إلى Redis قبل لمس أي شيء آخر. الإعداد سطران؛ والمكسب في كل تحميل صفحة.',
+          en: 'The sessions table held 1.6 million stale records, and a crawler was sending more than 2,300 requests a day. The home page listed two courses with 9,445 and 4,733 enrolments, which cost 853 database queries per load. A cron task was stuck, and the www certificate was broken.',
+          ar: 'وكان جدول الجلسات يحمل 1.6 مليون سجل قديم، وزاحف ويب يرسل أكثر من 2,300 طلب يوميًا. وكانت الصفحة الرئيسية تعرض مقررين فيهما 9,445 و4,733 تسجيلًا، فيكلّف كل تحميل لها 853 استعلامًا. وكانت مهمة cron عالقة، وشهادة www معطّلة.',
+        },
+      },
+      { kind: 'h2', text: { en: 'What I changed', ar: 'ما الذي غيّرته' } },
+      {
+        kind: 'p',
+        text: {
+          en: 'I raised PHP-FPM capacity from 5 to 60 workers, re-enabled MUC caching, and purged the stale sessions without logging anyone out. I blocked the crawler, fixed the cron task and the certificate, and took the two heavy courses off the front page.',
+          ar: 'رفعت سعة PHP-FPM من 5 إلى 60 عاملًا، وأعدت تفعيل MUC، وحذفت الجلسات القديمة دون تسجيل خروج أي مستخدم. وحجبت الزاحف، وأصلحت مهمة cron والشهادة، وأزلت المقررين الثقيلين من الصفحة الرئيسية.',
         },
       },
       {
         kind: 'code',
-        code: "// config.php\n$CFG->session_handler_class = '\\core\\session\\redis';\n$CFG->session_redis_host    = '127.0.0.1';",
+        code: '; PHP-FPM pool\npm.max_children = 60',
       },
-      {
-        kind: 'h2',
-        text: { en: '2. Find the real queries', ar: '2. اعثر على الاستعلامات الحقيقية' },
-      },
+      { kind: 'h2', text: { en: 'Results', ar: 'النتيجة' } },
       {
         kind: 'p',
         text: {
-          en: 'Placeholder: slow-query log for a week of real traffic beats any synthetic benchmark. Index what students actually hit.',
-          ar: 'نص مؤقت: سجلّ الاستعلامات البطيئة لأسبوع من الاستخدام الحقيقي يتفوق على أي قياس اصطناعي. أنشئ الفهارس لما يستخدمه الطلاب فعلًا.',
+          en: 'Home-page database queries dropped from 853 to 219, and database time from 0.84 s to 0.12 s. The same 300-user load test then served 21,294 requests at 43.7 requests per second, with a p95 of 4.4 s and zero errors.',
+          ar: 'انخفضت استعلامات الصفحة الرئيسية من 853 إلى 219، وزمن قاعدة البيانات من 0.84 إلى 0.12 ثانية. وفي اختبار الحِمل نفسه عند 300 مستخدم خدم الموقع 21,294 طلبًا بمعدل 43.7 طلبًا في الثانية، وبلغ p95 نحو 4.4 ثانية دون أي خطأ.',
         },
       },
       {
         kind: 'quote',
         text: {
-          en: 'Measure on the first Sunday of the semester, not in July.',
-          ar: 'قِس في أول أحد من الفصل الدراسي، لا في الإجازة.',
+          en: 'Measure first: the load test before the change is what gives the result after it meaning.',
+          ar: 'قِس أولًا: اختبار الحِمل قبل التغيير هو ما يعطي النتيجة بعده معناها.',
         },
       },
-    ],
-  },
-  {
-    slug: 'arabic-first-moodle-themes',
-    date: { en: 'JUN 2026', ar: 'يونيو 2026' },
-    type: 'tutorial',
-    title: {
-      en: 'Building Arabic-first Moodle themes',
-      ar: 'بناء قوالب Moodle عربية أولًا',
-    },
-    excerpt: {
-      en: 'RTL layouts, Plex Arabic type, and Boost child themes that hold up in both directions.',
-      ar: 'تخطيطات RTL وخط Plex Arabic وقوالب Boost فرعية تصمد في الاتجاهين.',
-    },
-    readMin: 9,
-    tags: ['Moodle', 'RTL', 'SCSS'],
-    coverLabel: 'Cover image 1720 × 740',
-    body: [
       {
         kind: 'p',
         text: {
-          en: 'Placeholder: article body arrives with the real content.',
-          ar: 'نص مؤقت: يصل محتوى المقال الحقيقي لاحقًا.',
-        },
-      },
-    ],
-  },
-  {
-    slug: 'zero-downtime-migrations',
-    date: { en: 'MAY 2026', ar: 'مايو 2026' },
-    type: 'note',
-    title: {
-      en: 'Large-scale data migrations without downtime',
-      ar: 'ترحيل بيانات واسع النطاق دون توقف',
-    },
-    excerpt: {
-      en: 'Placeholder: chunked migrations, dry runs, and rollback plans from the PNU platform.',
-      ar: 'نص مؤقت: ترحيل على دفعات وتجارب جافة وخطط تراجع من منصة جامعة الأميرة نورة.',
-    },
-    readMin: 6,
-    tags: ['MySQL', 'Moodle'],
-    coverLabel: 'Cover image 1720 × 740',
-    body: [
-      {
-        kind: 'p',
-        text: {
-          en: 'Placeholder: article body arrives with the real content.',
-          ar: 'نص مؤقت: يصل محتوى المقال الحقيقي لاحقًا.',
-        },
-      },
-    ],
-  },
-  {
-    slug: 'lti-integrations-guide',
-    date: { en: 'APR 2026', ar: 'أبريل 2026' },
-    type: 'tutorial',
-    title: {
-      en: 'LTI integrations: a practical guide',
-      ar: 'تكاملات LTI: دليل عملي',
-    },
-    excerpt: {
-      en: 'Placeholder: connecting external tools to Moodle with LTI 1.3, step by step.',
-      ar: 'نص مؤقت: ربط الأدوات الخارجية بـ Moodle عبر LTI 1.3 خطوة بخطوة.',
-    },
-    readMin: 14,
-    tags: ['Moodle', 'LTI'],
-    coverLabel: 'Cover image 1720 × 740',
-    body: [
-      {
-        kind: 'p',
-        text: {
-          en: 'Placeholder: article body arrives with the real content.',
-          ar: 'نص مؤقت: يصل محتوى المقال الحقيقي لاحقًا.',
-        },
-      },
-    ],
-  },
-  {
-    slug: 'laravel-queues-lms',
-    date: { en: 'MAR 2026', ar: 'مارس 2026' },
-    type: 'note',
-    title: {
-      en: 'Laravel queues for LMS background jobs',
-      ar: 'طوابير Laravel لمهام LMS الخلفية',
-    },
-    excerpt: {
-      en: 'Placeholder: grading exports, enrolment syncs, and notifications off the request path.',
-      ar: 'نص مؤقت: تصدير الدرجات ومزامنة التسجيل والإشعارات خارج مسار الطلب.',
-    },
-    readMin: 7,
-    tags: ['Laravel', 'Redis'],
-    coverLabel: 'Cover image 1720 × 740',
-    body: [
-      {
-        kind: 'p',
-        text: {
-          en: 'Placeholder: article body arrives with the real content.',
-          ar: 'نص مؤقت: يصل محتوى المقال الحقيقي لاحقًا.',
+          en: 'I also added permanent slow-page monitoring, so the next regression shows up before learners report it.',
+          ar: 'وأضفت مراقبة دائمة للصفحات البطيئة، حتى يظهر أي تراجع قبل أن يبلّغ عنه الدارسون.',
         },
       },
     ],
