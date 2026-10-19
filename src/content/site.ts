@@ -62,12 +62,12 @@ export const ui = {
   hero: {
     rolePre: {
       en: 'Senior Moodle developer building ',
-      ar: 'مطوّر Moodle أوّل يبني ',
+      ar: 'مطور Moodle أول يبني ',
     },
     roleAccent: { en: 'e-learning platforms', ar: 'منصات التعليم الإلكتروني' },
     rolePost: {
       en: ' for universities, academies and nonprofits, from custom plugins to the servers they run on.',
-      ar: ' للجامعات والأكاديميات والجمعيات، من الإضافات المخصّصة إلى الخوادم التي تعمل عليها.',
+      ar: ' للجامعات والأكاديميات والجمعيات، من الإضافات المخصصة إلى الخوادم التي تعمل عليها.',
     },
     ctaWork: { en: 'View work', ar: 'شاهد الأعمال' },
     ctaEmail: { en: 'Email me', ar: 'راسلني' },
@@ -95,7 +95,7 @@ export const ui = {
     minReadLong: { en: 'MIN READ', ar: 'دقائق قراءة' },
   },
   footer: {
-    heading: { en: "Let's work together", ar: 'لنعملْ معًا' },
+    heading: { en: "Let's work together", ar: 'لنعمل معا' },
     rights: {
       en: `© ${new Date().getFullYear()} Wail Abualela Osman`,
       ar: `© ${new Date().getFullYear()} وائل أبوالعلا عثمان`,
@@ -109,10 +109,10 @@ export const projects: Project[] = [
     slug: 'moddaker',
     title: 'Moddaker',
     desc: {
-      en: 'Merged six standalone language platforms (Arabic, English, Indonesian, French, Urdu, Portuguese) into one Moodle site teaching Al-Mukhtasar in six languages, with consolidated learner data and Telegram sign-up for learners without email. Launched in Ramadan 2026.',
-      ar: 'دمج ست منصات لغوية مستقلة (العربية والإنجليزية والإندونيسية والفرنسية والأردية والبرتغالية) في موقع Moodle واحد يدرّس كتاب المختصر بست لغات، مع توحيد بيانات الدارسين والتسجيل عبر Telegram لمن لا يملك بريدًا. أُطلقت في رمضان 2026.',
+      en: 'Merged six standalone language platforms (Arabic, English, Indonesian, French, Urdu, Portuguese) into one Moodle site teaching Al-Mukhtasar in six languages, with consolidated learner data. Launched in Ramadan 2026.',
+      ar: 'دمج ست منصات لغوية مستقلة (العربية والإنجليزية والإندونيسية والفرنسية والأردية والبرتغالية) في موقع Moodle واحد يدرس كتاب المختصر بست لغات، مع توحيد بيانات الدارسين. أطلقت في رمضان 2026.',
     },
-    tags: ['Moodle', 'Migration', 'Telegram'],
+    tags: ['Moodle', 'Migration', 'Multilingual'],
     url: 'https://moddaker.com',
     image: '/projects/moddaker.webp',
     phLabel: '',
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     title: 'Alborhan Academy',
     desc: {
       en: 'Performance engineering on a Moodle 4.5 platform serving 8,000+ learners: home-page queries cut from 853 to 219 and p95 latency at 300 concurrent users from 11.0 s to 4.4 s with zero errors, after moving it to self-managed servers and upgrading Moodle.',
-      ar: 'هندسة أداء لمنصة Moodle 4.5 تخدم أكثر من 8,000 دارس: خفض استعلامات الصفحة الرئيسية من 853 إلى 219، وزمن الاستجابة p95 عند 300 مستخدم متزامن من 11.0 إلى 4.4 ثانية دون أخطاء، بعد نقلها إلى خوادم مُدارة ذاتيًا وترقية Moodle.',
+      ar: 'هندسة أداء لمنصة Moodle 4.5 تخدم أكثر من 8,000 دارس: خفض استعلامات الصفحة الرئيسية من 853 إلى 219، وزمن الاستجابة p95 عند 300 مستخدم متزامن من 11.0 إلى 4.4 ثانية دون أخطاء، بعد نقلها إلى خوادم مدارة ذاتيا وترقية Moodle.',
     },
     tags: ['Moodle', 'PHP-FPM', 'Redis'],
     url: 'https://alborhanacademy.com',
@@ -133,8 +133,8 @@ export const projects: Project[] = [
     slug: 'africa-academy',
     title: 'Africa Academy',
     desc: {
-      en: 'Moodle platforms teaching Sharia studies to African learners in their own languages (Amharic and Oromo live, Hausa and Swahili in preparation): returned the academy to Moodle from WordPress LMS plugins, migrated every server to Contabo, and shipped a customized Moodle App for the Amharic platform on Google Play.',
-      ar: 'منصات Moodle تدرّس العلوم الشرعية للمتعلمين الأفارقة بلغاتهم (الأمهرية والأورومية تعملان، والهوسا والسواحيلية قيد التجهيز): إعادة الأكاديمية إلى Moodle بعد تجربة إضافات WordPress التعليمية، ونقل كل الخوادم إلى Contabo، وإطلاق تطبيق Moodle مخصّص للمنصة الأمهرية على Google Play.',
+      en: 'Moodle platforms teaching Sharia studies to African learners in their own languages (Amharic and Oromo live, Hausa and Swahili in preparation): returned the academy to Moodle from WordPress LMS plugins, migrated every server to Contabo, and shipped a customized Moodle App for the Amharic platform on Google Play, with Google and Telegram sign-in.',
+      ar: 'منصات Moodle تدرس العلوم الشرعية للمتعلمين الأفارقة بلغاتهم (الأمهرية والأورومية تعملان، والهوسا والسواحيلية قيد التجهيز): إعادة الأكاديمية إلى Moodle بعد تجربة إضافات WordPress التعليمية، ونقل كل الخوادم إلى Contabo، وإطلاق تطبيق Moodle مخصص للمنصة الأمهرية على Google Play مع الدخول عبر Google وTelegram.',
     },
     tags: ['Moodle', 'Moodle App', 'Linux'],
     url: 'https://africaacademy.com',
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     title: 'IUA Learn',
     desc: {
       en: 'Moodle 5.1 distance-learning platform for about 20,000 students across 22 colleges at the International University of Africa, delivered between June and August 2025 with staff training.',
-      ar: 'منصة تعليم عن بُعد على Moodle 5.1 لنحو 20,000 طالب في 22 كلية بجامعة أفريقيا العالمية، سُلّمت بين يونيو وأغسطس 2025 مع تدريب الكوادر.',
+      ar: 'منصة تعليم عن بعد على Moodle 5.1 لنحو 20,000 طالب في 22 كلية بجامعة أفريقيا العالمية، سلمت بين يونيو وأغسطس 2025 مع تدريب الكوادر.',
     },
     tags: ['Moodle 5.1', 'University', 'Training'],
     url: 'https://lms.iua.edu.sd',
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     title: 'Alborhan Elections',
     desc: {
       en: "Electronic voting platform for the association's board elections, built in 10 working days: OTP login over SMS, passkeys, proxy voting, tie-breaking with a secure random draw, an append-only audit log, and an installable PWA.",
-      ar: 'منصة تصويت إلكتروني لانتخابات مجلس إدارة الجمعية، بُنيت في 10 أيام عمل: دخول برمز تحقق عبر SMS، ومفاتيح المرور (Passkeys)، والتصويت بالإنابة، وحسم التعادل بسحب عشوائي آمن، وسجل تدقيق لا يُعدَّل، وتطبيق ويب قابل للتثبيت.',
+      ar: 'منصة تصويت إلكتروني لانتخابات مجلس إدارة الجمعية، بنيت في 10 أيام عمل: دخول برمز تحقق عبر SMS، ومفاتيح المرور (Passkeys)، والتصويت بالإنابة، وحسم التعادل بسحب عشوائي آمن، وسجل تدقيق لا يعدل، وتطبيق ويب قابل للتثبيت.',
     },
     tags: ['Laravel', 'React', 'PWA'],
     phLabel: '',
@@ -170,15 +170,15 @@ export const experience: ExperienceEntry[] = [
     period: 'JUN 2025 - PRESENT',
     company: {
       en: 'Al-Siraj Association · Riyadh (Remote)',
-      ar: 'جمعية السراج · الرياض (عن بُعد)',
+      ar: 'جمعية السراج · الرياض (عن بعد)',
     },
     role: {
       en: 'Senior Moodle Developer & eLearning Platform Engineer (Part-time)',
-      ar: 'مطوّر Moodle أوّل ومهندس منصات تعليم إلكتروني (دوام جزئي)',
+      ar: 'مطور Moodle أول ومهندس منصات تعليم إلكتروني (دوام جزئي)',
     },
     desc: {
       en: "Own Africa Academy's Moodle language platforms end to end: servers, Moodle setup, hardening, scaling around registration and exams, the Amharic Moodle App, and staff training. Delivered the International University of Africa's Moodle 5.1 platform and support the Islamic University of Kenya's platform.",
-      ar: 'إدارة منصات أكاديمية أفريقيا اللغوية على Moodle من البداية للنهاية: الخوادم والإعداد والتأمين والتوسعة في مواسم التسجيل والاختبارات، وتطبيق Moodle للمنصة الأمهرية، وتدريب الفريق. سلّمت منصة جامعة أفريقيا العالمية على Moodle 5.1، وأدعم منصة الجامعة الإسلامية في كينيا.',
+      ar: 'إدارة منصات أكاديمية أفريقيا اللغوية على Moodle من البداية للنهاية: الخوادم والإعداد والتأمين والتوسعة في مواسم التسجيل والاختبارات، وتطبيق Moodle للمنصة الأمهرية، وتدريب الفريق. سلمت منصة جامعة أفريقيا العالمية على Moodle 5.1، وأدعم منصة الجامعة الإسلامية في كينيا.',
     },
   },
   {
@@ -189,11 +189,11 @@ export const experience: ExperienceEntry[] = [
     },
     role: {
       en: 'Senior Moodle Developer & eLearning Platforms Manager (Part-time)',
-      ar: 'مطوّر Moodle أوّل ومدير منصات التعليم الإلكتروني (دوام جزئي)',
+      ar: 'مطور Moodle أول ومدير منصات التعليم الإلكتروني (دوام جزئي)',
     },
     desc: {
       en: "Run Moddaker and Alborhan Academy: merged Moddaker's six language platforms into one site, moved and upgraded Alborhan Academy, and cut its p95 latency from 11.0 s to 4.4 s. Manage the association's servers and online services, and build its Moodle plugins and Laravel systems.",
-      ar: 'إدارة منصتي مدّكر وأكاديمية البرهان: دمج منصات مدّكر الست في موقع واحد، ونقل أكاديمية البرهان وترقيتها، وخفض زمن الاستجابة p95 فيها من 11.0 إلى 4.4 ثانية. إدارة خوادم الجمعية وخدماتها الإلكترونية، وتطوير إضافات Moodle وأنظمة Laravel.',
+      ar: 'إدارة منصتي مدكر وأكاديمية البرهان: دمج منصات مدكر الست في موقع واحد، ونقل أكاديمية البرهان وترقيتها، وخفض زمن الاستجابة p95 فيها من 11.0 إلى 4.4 ثانية. إدارة خوادم الجمعية وخدماتها الإلكترونية، وتطوير إضافات Moodle وأنظمة Laravel.',
     },
   },
   {
@@ -204,11 +204,11 @@ export const experience: ExperienceEntry[] = [
     },
     role: {
       en: 'Moodle Developer, Princess Nourah University (contract placement)',
-      ar: 'مطوّر Moodle لجامعة الأميرة نورة (تعاقد)',
+      ar: 'مطور Moodle لجامعة الأميرة نورة (تعاقد)',
     },
     desc: {
       en: "Developed and administered components of the university's e-learning platform with its platform team, and customized an exam-booking plugin for its ESOL exams with session filters, booking and payment through Moodle.",
-      ar: 'تطوير وإدارة مكوّنات في منصة التعليم الإلكتروني للجامعة بالتنسيق اليومي مع فريقها، وتخصيص إضافة لحجز اختبارات ESOL تتيح تصفية الجلسات والحجز والدفع عبر Moodle.',
+      ar: 'تطوير وإدارة مكونات في منصة التعليم الإلكتروني للجامعة بالتنسيق اليومي مع فريقها، وتخصيص إضافة لحجز اختبارات ESOL تتيح تصفية الجلسات والحجز والدفع عبر Moodle.',
     },
   },
   {
@@ -217,16 +217,16 @@ export const experience: ExperienceEntry[] = [
       en: 'Izdiad for Integrated Services and Solutions',
       ar: 'ازدياد للخدمات والحلول المتكاملة',
     },
-    role: { en: 'Senior Moodle Developer', ar: 'مطوّر Moodle أوّل' },
+    role: { en: 'Senior Moodle Developer', ar: 'مطور Moodle أول' },
     desc: {
       en: "Built and ran Moodle platforms for the company's clients, including Moddaker and Africa Academy: upgraded Moddaker's four language sites and built its Urdu site from scratch, implemented Google login, paid enrolment and H5P, and provisioned LEMP servers.",
-      ar: 'بناء وتشغيل منصات Moodle لعملاء الشركة، ومنها مدّكر وأكاديمية أفريقيا: ترقية مواقع مدّكر الأربعة وبناء موقعها الأردي من الصفر، وتنفيذ الدخول عبر Google والتسجيل المدفوع وH5P، وتجهيز خوادم LEMP.',
+      ar: 'بناء وتشغيل منصات Moodle لعملاء الشركة، ومنها مدكر وأكاديمية أفريقيا: ترقية مواقع مدكر الأربعة وبناء موقعها الأردي من الصفر، وتنفيذ الدخول عبر Google والتسجيل المدفوع وH5P، وتجهيز خوادم LEMP.',
     },
   },
   {
     period: 'NOV 2022 - JAN 2023',
     company: { en: 'Khlel Platform', ar: 'منصة خليل' },
-    role: { en: 'Laravel Developer', ar: 'مطوّر Laravel' },
+    role: { en: 'Laravel Developer', ar: 'مطور Laravel' },
     desc: {
       en: 'Built, debugged and tested features on a Laravel platform for Quran study circles, with React via Inertia.js for interactive features and deployments through Laravel Forge.',
       ar: 'بناء ميزات وتصحيحها واختبارها في منصة Laravel لحلقات القرآن، مع React عبر Inertia.js للواجهات التفاعلية والنشر عبر Laravel Forge.',
@@ -235,7 +235,7 @@ export const experience: ExperienceEntry[] = [
   {
     period: 'OCT 2021 - NOV 2022',
     company: { en: 'Freelance (Fiverr)', ar: 'عمل حر (Fiverr)' },
-    role: { en: 'Freelance Web Developer', ar: 'مطوّر ويب مستقل' },
+    role: { en: 'Freelance Web Developer', ar: 'مطور ويب مستقل' },
     desc: {
       en: 'Customized Moodle platforms and Moodle mobile apps for educational institutions, and delivered Laravel features for client web applications, from requirements to deployment and support.',
       ar: 'تخصيص منصات Moodle وتطبيقاتها للجوال لمؤسسات تعليمية، وتطوير ميزات Laravel لتطبيقات العملاء من المتطلبات حتى النشر والدعم.',
@@ -244,7 +244,7 @@ export const experience: ExperienceEntry[] = [
   {
     period: 'JUL 2021 - OCT 2021',
     company: { en: 'Intelligent Projects · Khartoum', ar: 'المشاريع الذكية · الخرطوم' },
-    role: { en: 'Web Developer', ar: 'مطوّر ويب' },
+    role: { en: 'Web Developer', ar: 'مطور ويب' },
     desc: {
       en: "Developed client web applications with Laravel, Livewire and WordPress, and maintained the company's portfolio of web applications.",
       ar: 'تطوير تطبيقات ويب للعملاء باستخدام Laravel و Livewire و WordPress، وصيانة تطبيقات الشركة.',
@@ -259,7 +259,7 @@ export const experience: ExperienceEntry[] = [
     role: { en: 'Software Engineer', ar: 'مهندس برمجيات' },
     desc: {
       en: "Laravel back-end developer on projects for clients outside Sudan, including parts of a client's admin dashboard.",
-      ar: 'مطوّر واجهات خلفية بـ Laravel في مشاريع لعملاء خارج السودان، منها أجزاء من لوحة تحكم لأحد العملاء.',
+      ar: 'مطور واجهات خلفية بـ Laravel في مشاريع لعملاء خارج السودان، منها أجزاء من لوحة تحكم لأحد العملاء.',
     },
   },
   {
@@ -274,16 +274,16 @@ export const experience: ExperienceEntry[] = [
   {
     period: 'OCT 2019 - NOV 2020',
     company: { en: 'Innovative Solutions · Khartoum', ar: 'الحلول المبتكرة · الخرطوم' },
-    role: { en: 'Moodle Developer', ar: 'مطوّر Moodle' },
+    role: { en: 'Moodle Developer', ar: 'مطور Moodle' },
     desc: {
       en: 'Continued the D2EL Moodle platform and its iOS and Android apps, built a Sudani mobile-payment enrolment plugin, and built the Ivory Private School platform used for remote teaching during the COVID-19 closures, with staff workshops.',
-      ar: 'متابعة تطوير منصة D2EL على Moodle وتطبيقاتها لـ iOS و Android، وبناء إضافة تسجيل بالدفع عبر سوداني، وبناء منصة مدرسة آيفوري الخاصة التي اعتمدت عليها في التعليم عن بُعد خلال إغلاق كورونا، مع ورش لكادر المدرسة.',
+      ar: 'متابعة تطوير منصة D2EL على Moodle وتطبيقاتها لـ iOS و Android، وبناء إضافة تسجيل بالدفع عبر سوداني، وبناء منصة مدرسة آيفوري الخاصة التي اعتمدت عليها في التعليم عن بعد خلال إغلاق كورونا، مع ورش لكادر المدرسة.',
     },
   },
   {
     period: 'JUN 2019 - SEP 2019',
     company: { en: 'Click Grafix Company · Khartoum', ar: 'كليك جرافكس · الخرطوم' },
-    role: { en: 'Web Application Developer', ar: 'مطوّر تطبيقات ويب' },
+    role: { en: 'Web Application Developer', ar: 'مطور تطبيقات ويب' },
     desc: {
       en: 'Built a small CMS with Laravel: requirements gathering, documentation, content and data management, testing, and maintenance.',
       ar: 'تطوير نظام إدارة محتوى صغير بـ Laravel: جمع المتطلبات، والتوثيق، وإدارة المحتوى والبيانات، والاختبار والصيانة.',
