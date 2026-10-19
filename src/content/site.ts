@@ -11,9 +11,9 @@ export interface Project {
   desc: Localized;
   tags: string[];
   url?: string;
-  /* label shown inside the gradient placeholder until real screenshots arrive */
+  /* label shown inside the gradient placeholder when a project has no screenshot */
   phLabel: string;
-  /* TODO: real screenshot path once the user provides one; replaces the placeholder */
+  /* screenshot in public/projects: 1600x1029 (14:9), or 2100x900 (21:9) for the wide grid slot */
   image?: string;
 }
 
@@ -103,7 +103,7 @@ export const ui = {
   },
 } as const;
 
-/* Media: real screenshots replace the neutral gradient blocks once provided (phLabel stays empty) */
+/* Media: public-page screenshots in public/projects; a project without one keeps the gradient block */
 export const projects: Project[] = [
   {
     slug: 'moddaker',
@@ -114,6 +114,7 @@ export const projects: Project[] = [
     },
     tags: ['Moodle', 'Migration', 'Telegram'],
     url: 'https://moddaker.com',
+    image: '/projects/moddaker.webp',
     phLabel: '',
   },
   {
@@ -124,6 +125,8 @@ export const projects: Project[] = [
       ar: 'هندسة أداء لمنصة Moodle 4.5 تخدم أكثر من 8,000 دارس: خفض استعلامات الصفحة الرئيسية من 853 إلى 219، وزمن الاستجابة p95 عند 300 مستخدم متزامن من 11.0 إلى 4.4 ثانية دون أخطاء، بعد نقلها إلى خوادم مُدارة ذاتيًا وترقية Moodle.',
     },
     tags: ['Moodle', 'PHP-FPM', 'Redis'],
+    url: 'https://alborhanacademy.com',
+    image: '/projects/alborhan-academy.webp',
     phLabel: '',
   },
   {
@@ -135,6 +138,7 @@ export const projects: Project[] = [
     },
     tags: ['Moodle', 'Moodle App', 'Linux'],
     url: 'https://africaacademy.com',
+    image: '/projects/africa-academy.webp',
     phLabel: '',
   },
   {
@@ -146,6 +150,7 @@ export const projects: Project[] = [
     },
     tags: ['Moodle 5.1', 'University', 'Training'],
     url: 'https://lms.iua.edu.sd',
+    image: '/projects/iua-learn.webp',
     phLabel: '',
   },
   {
@@ -339,7 +344,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: { en: 'Backend', ar: 'الواجهة الخلفية' },
-    items: ['PHP', 'Laravel', 'Livewire', 'Inertia.js', 'MySQL / MariaDB', 'Redis', 'REST APIs'],
+    items: ['PHP', 'Laravel', 'Livewire', 'Inertia.js', 'MySQL / MariaDB', 'Redis', 'REST APIs', 'Behat'],
   },
   {
     label: { en: 'Frontend', ar: 'الواجهة الأمامية' },
